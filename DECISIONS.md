@@ -1,0 +1,91 @@
+# Registro de decisiones
+
+Las decisiones aceptadas pueden cambiar mediante una entrada posterior; no se reescribe su historia.
+
+## ADR-001 — Licencia AGPL-3.0-only
+
+- Estado: aceptada
+- Fecha: 2026-09-04
+
+Gabi SEO será un servicio open-source y self-hosted, y DispatchSEO —principal candidato de reutilización— usa AGPL-3.0. Adoptamos GNU AGPL v3 para el código propio de Gabi, sin cláusula “or later”, para asegurar disponibilidad del código de versiones modificadas ofrecidas por red y evitar incompatibilidades si más adelante se incorpora legítimamente código AGPL compatible.
+
+Esta decisión no relicencia DispatchSEO, agentes, SDKs, servicios externos ni INIMA. Cada componente conserva sus términos. No sustituye asesoramiento jurídico.
+
+## ADR-002 — Composición antes que copia o fork
+
+- Estado: aceptada como dirección; adopción técnica pendiente
+- Fecha: 2026-09-04
+
+Se prioriza ejecutar DispatchSEO sin modificar y consumir contratos MCP/API. Solo se considerará un fork cuando un spike demuestre que la extensión externa no cubre una necesidad crítica. Esta tanda no copia código upstream.
+
+Consecuencia: se necesita una capa anticorrupción y pruebas de contrato, pero se reduce el acoplamiento a internals y el coste de actualización.
+
+## ADR-003 — Cuatro ámbitos explícitos
+
+- Estado: aceptada
+- Fecha: 2026-09-04
+
+La arquitectura separa `upstream`, `gabi`, `integrations` e `inima-bridge`. No comparten tablas ni importan módulos internos entre límites. La comunicación cruza puertos, DTOs y eventos versionados.
+
+## ADR-004 — Monolito modular para el inicio
+
+- Estado: aceptada
+- Fecha: 2026-09-04
+
+El código propio empezará como monolito modular más worker, base relacional y almacén de secretos abstracto. No se crean microservicios hasta que aislamiento, escalado o ciclo de despliegue lo justifiquen.
+
+DispatchSEO, si se adopta, seguirá siendo un proceso/servicio separado.
+
+## ADR-005 — Multi-site como invariante
+
+- Estado: aceptada
+- Fecha: 2026-09-04
+
+Todas las entidades operativas y rutas de ejecución se acotan por `site_id`. La identidad MCP se resuelve a un sitio antes de ejecutar casos de uso. Workers, cachés, búsquedas, auditoría y secretos deben respetar el mismo límite.
+
+## ADR-006 — Servicios compartidos por dashboard, MCP y automatización
+
+- Estado: aceptada
+- Fecha: 2026-09-04
+
+Las tres entradas llaman a los mismos casos de uso y políticas. Ningún canal obtiene atajos de autorización. Las diferencias de presentación o transporte quedan en adaptadores.
+
+## ADR-007 — Aprobación y publicación segura por defecto
+
+- Estado: aceptada
+- Fecha: 2026-09-04
+
+Ideas y cambios públicos requieren aprobación humana por defecto. La publicación produce una pull request, nunca un push directo a la rama principal. Respuestas a reseñas y cambios en Google Business Profile requieren aprobación explícita en el MVP. El automerge futuro será opt-in y condicionado a checks.
+
+## ADR-008 — Credenciales propias y adaptadores reemplazables
+
+- Estado: aceptada
+- Fecha: 2026-09-04
+
+Cada instalación aporta sus cuentas y claves. El núcleo conserva referencias cifradas, no valores en configuración versionada. Los SDKs de Google, GitHub, agentes y datos SEO quedan detrás de interfaces para evitar que un proveedor defina el dominio.
+
+## ADR-009 — INIMA permanece externa
+
+- Estado: aceptada
+- Fecha: 2026-09-04
+
+INIMA no será un módulo, workspace ni dependencia de Gabi SEO. Una conexión futura será opcional, autenticada, versionada y desplegable por separado. No habrá copia bidireccional de código ni acceso directo a bases de datos.
+
+## ADR-010 — Métricas con procedencia y prudencia causal
+
+- Estado: aceptada
+- Fecha: 2026-09-04
+
+Search Console, GBP, analítica, leads y GEO producen observaciones con fuente, sitio, instante y frescura. La interfaz distinguirá datos observados, inferencias y recomendaciones. La atribución de conversiones no se presentará como causalidad demostrada.
+
+## Decisiones pendientes
+
+1. Modalidad exacta de reutilización y versión fijada de DispatchSEO.
+2. Stack de implementación de Gabi tras los spikes, sin asumir Next.js por herencia del upstream.
+3. Base de datos, migraciones y almacén de secretos para self-hosting.
+4. Contrato y transporte entre Gabi y el motor upstream.
+5. Proveedor y alcance de Search Console: OAuth, cuenta de servicio o ambos.
+6. Disponibilidad, revisión y límites de Google Business Profile API.
+7. Proveedor de analítica/conversiones y política de datos/consentimiento.
+8. Especificación pública del puente con INIMA y revisión jurídica correspondiente.
+9. Nombre definitivo, identidad del mantenedor y política de contribuciones.
