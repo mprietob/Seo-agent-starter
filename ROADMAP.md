@@ -12,9 +12,10 @@ El roadmap describe resultados verificables, no fechas comprometidas. Cada tanda
 
 ## Tanda 1 — Spikes de reutilización y contratos
 
-- [ ] Crear una matriz de capacidades Gabi ↔ DispatchSEO con versión y evidencia por capacidad.
+- [x] Crear una matriz de capacidades Gabi ↔ DispatchSEO con versión y evidencia por capacidad: [evaluación estática](docs/spikes/dispatchseo-evaluation.md), commit `fbf28b2` (2026-09-08). No acredita ejecución ni compatibilidad.
 - [ ] Probar en un entorno descartable el despliegue self-hosted de DispatchSEO sin conectar cuentas reales.
 - [ ] Inventariar contratos MCP/API necesarios y comprobar aislamiento multi-site.
+  - Inventario estático de 73 herramientas y [plan de contratos](docs/spikes/dispatchseo-contract-plan.md) preparados; esquemas en ejecución y aislamiento todavía pendientes.
 - [ ] Decidir: servicio upstream sin modificar, fork AGPL o adaptadores selectivos.
 - [ ] Definir contratos `Site`, `Idea`, `Approval`, `Run`, `Evidence` y eventos versionados.
 - [ ] Especificar threat model, retención, cifrado y almacén de secretos.

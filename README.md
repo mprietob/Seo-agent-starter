@@ -41,6 +41,7 @@ Consulta [ARCHITECTURE.md](ARCHITECTURE.md), [ROADMAP.md](ROADMAP.md) y [DECISIO
 - Dependencias y código de aplicación: ninguno.
 - Search Console, GitHub y otras cuentas: no conectadas.
 - Despliegue: no realizado.
+- Tanda 1 iniciada: [matriz de reutilización](docs/spikes/dispatchseo-evaluation.md), [inventario MCP](docs/spikes/dispatchseo-mcp-inventory.json) y [plan de pruebas de contrato](docs/spikes/dispatchseo-contract-plan.md). Evaluación estática; adopción y pruebas en ejecución pendientes.
 
 ## Desarrollo seguro
 
