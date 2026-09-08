@@ -1,6 +1,6 @@
 # Contratos y plan de ensayo de DispatchSEO
 
-Estado: propuesta para Tanda 1; no implementada ni ejecutada.
+Estado: plan de Tanda 1 parcialmente ensayado el 2026-09-09. El [informe del laboratorio](dispatchseo-lab-report.md) distingue caracterización upstream de requisitos Gabi aún pendientes; este documento conserva el plan original.
 Versión evaluada: fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26.
 Base: [evaluación y fuentes](dispatchseo-evaluation.md).
 
@@ -12,7 +12,7 @@ Reproducir leyendo ese archivo en el commit indicado y localizando las llamadas 
 
 Transporte observado: Streamable HTTP en /api/mcp, métodos GET/POST/DELETE exportados por el wrapper. La autenticación admite Authorization: Bearer y alternativamente key en query; el header prevalece. Gabi propondrá usar únicamente header, con token de proyecto guardado en su almacén de secretos. No emitir tokens en URLs ni entregar el token upstream al agente.
 
-Las respuestas de herramientas usan content con bloques text cuyo contenido es JSON. Los fallos pueden devolver isError y un objeto error dentro del texto; la autenticación falla con HTTP 401. No interpretar HTTP 200 como éxito de negocio. Validar forma, tamaño y campos del JSON antes de normalizarlo.
+Las respuestas de handlers usan content con bloques text cuyo contenido es JSON. Los fallos pueden devolver isError y un objeto error dentro del texto; el ensayo confirmó además errores de validación del SDK en texto no JSON. La autenticación falla con HTTP 401. No interpretar HTTP 200 como éxito de negocio. Reconocer isError antes de intentar normalizar JSON y validar forma, tamaño y campos.
 
 ## Superficie candidata del primer adaptador
 
@@ -47,7 +47,7 @@ Eventos candidatos: idea.created, approval.granted, publication.merged y metric.
 
 Si falta frescura upstream, marcar unknown; no inventar fresh_until. Rechazar cambios de site_id y referencias de otro sitio antes de contactar el motor. Las escrituras futuras requerirán deduplicación propia: la deduplicación por keyword observada no prueba idempotencia general ni atomicidad.
 
-## Ensayo descartable pendiente
+## Diseño original del ensayo descartable
 
 Preparación, antes de cualquier arranque:
 
@@ -60,11 +60,11 @@ Preparación, antes de cualquier arranque:
 7. Registrar versión, configuración redactada, servicios realmente activos, resultado de migraciones, health y captura sanitizada de herramientas/esquemas.
 8. Al terminar, detener únicamente los recursos identificados del laboratorio; conservar resultados sanitizados. No usar limpieza global de Docker.
 
-No se adjunta una configuración de arranque que se presente como probada: falta comprobarla contra Docker y revisar el bootstrap para crear los dos sitios sin activar integraciones.
+La [configuración de laboratorio](../../lab/README.md) implementa ahora este ensayo con un proxy local adicional. Los sitios se preparan mediante fixtures privilegiados; el wizard no se ha validado.
 
 ## Casos de aceptación
 
-Todos pendientes; los IDs permiten adjuntar resultados después.
+Los IDs identifican criterios de aceptación completos. Consultar el [informe](dispatchseo-lab-report.md) para cobertura parcial y resultados; los passes del harness no cierran automáticamente estos criterios.
 
 | ID | Prueba | Resultado exigido por Gabi |
 | --- | --- | --- |

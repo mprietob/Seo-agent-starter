@@ -1,6 +1,7 @@
 # Tanda 1 — Evaluación estática de DispatchSEO
 
 Fecha: 2026-09-08. Base Gabi: `44959aac92fab27bdba877b189d2ed15417d53d2`.
+Actualización posterior: [ensayo local del 2026-09-09](dispatchseo-lab-report.md). El resto de este documento conserva las conclusiones de la revisión estática original.
 Upstream inspeccionado: `fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26`. La revisión anterior, `89fa4b7`, permanece como evidencia histórica; esta evaluación no presupone compatibilidad entre ambas versiones.
 
 ## Resultado

@@ -1,0 +1,48 @@
+{
+  "recorded_at": "2026-09-08T23:00:26.5899391Z",
+  "images": [
+    {
+      "repo_digests": [
+        "gabi-seo-lab@sha256:defbb20673854e61d45fd01e01e165a7544395ab0b28491ff0894dbb5ae5b127"
+      ],
+      "reference": "gabi-seo-lab:fbf28b2",
+      "id": "sha256:defbb20673854e61d45fd01e01e165a7544395ab0b28491ff0894dbb5ae5b127"
+    },
+    {
+      "repo_digests": [
+        "postgres@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73"
+      ],
+      "reference": "postgres:17-alpine",
+      "id": "sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73"
+    },
+    {
+      "repo_digests": [
+        "postgrest/postgrest@sha256:5f4ce744539bbba786b4e24dbbd95bdb2a956dcf568c5374995a0ff4a68f5bd2"
+      ],
+      "reference": "postgrest/postgrest:v12.2.12",
+      "id": "sha256:5f4ce744539bbba786b4e24dbbd95bdb2a956dcf568c5374995a0ff4a68f5bd2"
+    },
+    {
+      "repo_digests": [
+        "nginx@sha256:72ba65eb42c10344912a84ff42408db7d34f2feb642204570ab8fc5ffd29f1d3"
+      ],
+      "reference": "nginx:alpine",
+      "id": "sha256:72ba65eb42c10344912a84ff42408db7d34f2feb642204570ab8fc5ffd29f1d3"
+    }
+  ],
+  "node_build_base_digest": "sha256:83f487e0a63425e5b4d146fb5e5be574bcbe1b7b843d3ebafdd95eaf7767a7e5",
+  "internal_network": true,
+  "upstream_commit": "fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26",
+  "entrance_ports": {
+    "80/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "4405"
+      }
+    ]
+  },
+  "app_networks": [
+    "gabi-seo-lab_isolated"
+  ],
+  "host_health_status": 200
+}

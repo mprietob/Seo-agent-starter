@@ -1,0 +1,80 @@
+{
+  "upstream_commit": "fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26",
+  "captured_at": "2026-09-08T22:56:19.3Z",
+  "tests": [
+    {
+      "id": "C01-health",
+      "label": "Application reaches database",
+      "status": "pass"
+    },
+    {
+      "id": "C02-missing-invalid",
+      "label": "Missing and unknown bearer rejected",
+      "status": "pass"
+    },
+    {
+      "id": "protocol",
+      "label": "MCP initialization and runtime inventory",
+      "status": "pass",
+      "detail": {
+        "protocol": "2024-11-05",
+        "agent_tools": 73,
+        "chat_tools": 19
+      }
+    },
+    {
+      "id": "C11-no-gsc",
+      "label": "Unconnected GSC distinguished from measured traffic",
+      "status": "pass"
+    },
+    {
+      "id": "C03-context-ideas-metrics",
+      "label": "Bidirectional site isolation in three reads",
+      "status": "pass"
+    },
+    {
+      "id": "C04-concurrent",
+      "label": "Twenty alternating concurrent site reads",
+      "status": "pass"
+    },
+    {
+      "id": "C05-cross-write",
+      "label": "Cross-site idea writes rejected in both directions",
+      "status": "pass"
+    },
+    {
+      "id": "C07-upstream-characterization",
+      "label": "Agent approval coerced; self-declared owner accepted",
+      "status": "pass",
+      "detail": "Confirms a Gabi adoption gap; this is not a pass of Gabi human-approval enforcement"
+    },
+    {
+      "id": "C10-upstream-invalid-input",
+      "label": "Malformed UUID rejected",
+      "status": "fail",
+      "error": "SyntaxError"
+    },
+    {
+      "id": "C12-chat-surface",
+      "label": "Chat and agent modes resolve the same site",
+      "status": "pass",
+      "detail": "Upstream behavior only; Gabi permissions are not implemented"
+    },
+    {
+      "id": "C02-revoked",
+      "label": "Rotated bearer stops working",
+      "status": "pass"
+    },
+    {
+      "id": "network-egress",
+      "label": "External HTTPS unavailable from app",
+      "status": "pass",
+      "detail": "One connectivity probe plus Compose internal network; not a packet capture"
+    }
+  ],
+  "schemas": {},
+  "summary": {
+    "passed": 11,
+    "failed": 1
+  }
+}
