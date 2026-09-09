@@ -42,6 +42,7 @@ Consulta [ARCHITECTURE.md](ARCHITECTURE.md), [ROADMAP.md](ROADMAP.md) y [DECISIO
 - Search Console, GitHub y otras cuentas: no conectadas.
 - Producción: sin despliegue. Upstream probado en Docker local con datos sintéticos; contenedores detenidos al terminar.
 - Tanda 1 en curso: [matriz](docs/spikes/dispatchseo-evaluation.md), [inventario MCP](docs/spikes/dispatchseo-mcp-inventory.json), [plan de contratos](docs/spikes/dispatchseo-contract-plan.md) e [informe del ensayo](docs/spikes/dispatchseo-lab-report.md). 12 comprobaciones de caracterización correctas; adopción e aislamiento integral pendientes.
+- [Ensayo adicional de fallos y credenciales](docs/spikes/dispatchseo-fault-report.md): nueve casos caracterizados entre dos ejecuciones; controles necesarios documentados en ADR-011. No se han conectado proveedores reales.
 
 ## Desarrollo seguro
 

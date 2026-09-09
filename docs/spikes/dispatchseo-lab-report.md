@@ -1,5 +1,7 @@
 # Ensayo local de DispatchSEO — 2026-09-09
 
+Ampliación posterior: [fallos de BD y credenciales simuladas](dispatchseo-fault-report.md). Este informe conserva el alcance del ensayo base.
+
 ## Resultado y alcance
 
 DispatchSEO se construyó desde `fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26` sin modificar código upstream. Compilación Next.js, TypeScript y generación de páginas completadas. Las migraciones terminaron con código 0; app y Postgres estuvieron healthy; el health HTTP desde Windows devolvió 200.

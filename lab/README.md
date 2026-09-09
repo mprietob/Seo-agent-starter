@@ -48,3 +48,22 @@ El harness rechaza bases con dominios ajenos a los fixtures y al proyecto neutra
 Probe guarda `docs/spikes/dispatchseo-lab-results.json`: resultados y esquemas observados, sin tokens ni respuestas con credenciales. Un pass de caracterización puede confirmar una carencia del upstream; leer la descripción, especialmente C07. No son las 14 pruebas completas de aceptación del futuro producto.
 
 El [informe](../docs/spikes/dispatchseo-lab-report.md) conserva alcance, incidencias y pendientes. Stop detiene solo este proyecto y conserva el volumen; no borra imágenes, checkout, secretos ni datos. No ejecutar limpieza global de Docker.
+
+## Fallos y proveedores simulados
+
+Después de haber ejecutado el ensayo base para crear fixtures:
+
+```powershell
+./lab/run.ps1 Up -Faults
+# Esperar app healthy.
+./lab/run.ps1 Probe -Faults
+./lab/run.ps1 Stop -Faults
+```
+
+El override `faults.compose.yaml` añade un simulador interno y un preload de instrumentación al proceso app; no modifica el checkout upstream. El proxy de BD devuelve fallos de transporte/esquema seleccionados. Google y GitHub se simulan solo en los hosts interceptados; sus credenciales son aleatorias, efímeras y sin validez real. El simulador conserva únicamente método, ruta sintética y etiqueta de igualdad de credencial en el informe, nunca el valor de Authorization ni el JWT.
+
+El harness restaura referencias de los proyectos y métricas sintéticas al terminar. Las aserciones que reproducen una carencia incluyen `gabi_requirement: not_met`: pass significa comportamiento observado esperado, no cumplimiento de Gabi. Los fallos del transporte pueden tardar varios minutos por los reintentos internos del motor.
+
+Resultados del recorrido completo: `docs/spikes/dispatchseo-fault-results.json`. La ejecución de desarrollo conservada tiene un fallo de fixture GSC; la repetición específica corregida está en `dispatchseo-gsc-mock-results.json`. El script actual permite filtrar un caso mediante la variable de proceso `LAB_CASE`; el wrapper ejecuta todos por defecto.
+
+Antes de regresar al ensayo base, detener con `-Faults` y arrancar sin él: Docker recreará app sin la instrumentación. El contenedor faults puede permanecer detenido como recurso del proyecto. No ejecutar simultáneamente probes base y de fallos: comparten fixtures y modo del simulador. Consultar [alcance y resultados](../docs/spikes/dispatchseo-fault-report.md).

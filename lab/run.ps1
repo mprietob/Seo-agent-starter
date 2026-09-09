@@ -1,6 +1,7 @@
 param(
   [ValidateSet('Build','Up','Probe','Stop','Status')][string]$Action = 'Status',
-  [string]$DockerPath = ''
+  [string]$DockerPath = '',
+  [switch]$Faults
 )
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path $PSScriptRoot
@@ -32,16 +33,19 @@ if (-not (Test-Path -LiteralPath $envPath)) {
   } finally { $rng.Dispose() }
 }
 $composeArgs = @('compose','--env-file',$envPath,'-f',(Join-Path $PSScriptRoot 'compose.yaml'))
+if ($Faults) { $composeArgs += @('-f',(Join-Path $PSScriptRoot 'faults.compose.yaml')) }
 switch ($Action) {
   'Build' { & $DockerPath @composeArgs build app }
   'Up' { & $DockerPath @composeArgs up -d --no-build }
   'Stop' { & $DockerPath @composeArgs stop }
   'Status' { & $DockerPath @composeArgs ps -a }
   'Probe' {
-    $result = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot 'probe.mjs') | & $DockerPath @composeArgs exec -T app node --input-type=module
+    $probeFile = if ($Faults) { 'fault-probe.mjs' } else { 'probe.mjs' }
+    $result = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot $probeFile) | & $DockerPath @composeArgs exec -T app node --input-type=module
     $probeExit = $LASTEXITCODE
     $parsed = ($result -join "`n") | ConvertFrom-Json
-    $resultPath = Join-Path $repoRoot 'docs/spikes/dispatchseo-lab-results.json'
+    $resultFile = if ($Faults) { 'docs/spikes/dispatchseo-fault-results.json' } else { 'docs/spikes/dispatchseo-lab-results.json' }
+    $resultPath = Join-Path $repoRoot $resultFile
     [System.IO.File]::WriteAllText($resultPath, ($result -join "`n") + "`n", [System.Text.UTF8Encoding]::new($false))
     $parsed.tests | Select-Object id,status,label | Format-Table -AutoSize
     if ($parsed.fatal -or $probeExit -ne 0) { throw 'Laboratory probe failed; inspect the sanitized result file.' }

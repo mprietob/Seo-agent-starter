@@ -16,6 +16,7 @@ El roadmap describe resultados verificables, no fechas comprometidas. Cada tanda
 - [x] Probar en un entorno descartable el despliegue self-hosted de DispatchSEO sin conectar cuentas reales: [ensayo Docker del 2026-09-09](docs/spikes/dispatchseo-lab-report.md), con cron y builders excluidos.
 - [ ] Inventariar contratos MCP/API necesarios y comprobar aislamiento multi-site.
   - Esquemas reales capturados: 73 herramientas agente y 19 chat. Lecturas, concurrencia y escrituras cruzadas de ideas ensayadas; aislamiento de credenciales, fallbacks y otros casos del [plan](docs/spikes/dispatchseo-contract-plan.md) todavía pendientes.
+  - [C06/C13 caracterizados con fallos y proveedores simulados](docs/spikes/dispatchseo-fault-report.md): tres diferencias respecto a los requisitos Gabi. ADR-011 fija restricciones; pruebas completas de la fachada y credenciales aún pendientes.
 - [ ] Decidir: servicio upstream sin modificar, fork AGPL o adaptadores selectivos.
 - [ ] Definir contratos `Site`, `Idea`, `Approval`, `Run`, `Evidence` y eventos versionados.
 - [ ] Especificar threat model, retención, cifrado y almacén de secretos.

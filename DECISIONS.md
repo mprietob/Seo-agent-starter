@@ -78,6 +78,19 @@ INIMA no será un módulo, workspace ni dependencia de Gabi SEO. Una conexión f
 
 Search Console, GBP, analítica, leads y GEO producen observaciones con fuente, sitio, instante y frescura. La interfaz distinguirá datos observados, inferencias y recomendaciones. La atribución de conversiones no se presentará como causalidad demostrada.
 
+## ADR-011 — Condiciones de aislamiento para adoptar el motor
+
+- Estado: aceptada como restricción de diseño; implementación y adopción técnica pendientes
+- Fecha: 2026-09-09
+
+El [ensayo de fallos y proveedores simulados](docs/spikes/dispatchseo-fault-report.md) confirma que la separación de filas por proyecto en DispatchSEO self-hosted no limita por sí sola los recursos alcanzables con credenciales de instancia. También caracteriza el fallback legacy a flags automáticos durante un fallo de BD. Esto no cambia ADR-002: composición sigue siendo la primera opción a evaluar.
+
+Para Gabi, los agentes generales no recibirán tokens directos del motor. La identidad autenticada de Gabi determinará site_id y la conexión upstream; las herramientas no podrán elegir otra conexión ni declarar por sí mismas una aprobación humana. Los recursos GSC/GitHub deberán estar fijados por conexión y los permisos externos limitados al sitio. MCP_API_KEY legacy permanecerá ausente en las instancias usadas por Gabi. Fallos de dependencias no ampliarán permisos ni convertirán estados desconocidos en aprobaciones.
+
+El primer contrato tendrá una lista explícita de capacidades; no usará nombres get_/check_ como garantía de ausencia de efectos. Cambios de propiedad/repositorio, publicación y merge estarán excluidos hasta tener políticas autenticadas y pruebas de contrato.
+
+Una instancia por sitio con credenciales restringidas es una alternativa a evaluar; no basta separarla si conserva permisos externos amplios. Una instancia compartida necesitaría controles que impidan saltarse la fachada. No se selecciona todavía ninguna de las dos topologías ni el stack del producto.
+
 ## Decisiones pendientes
 
 1. Modalidad exacta de reutilización y versión fijada de DispatchSEO.
