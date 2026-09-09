@@ -35,6 +35,7 @@ Salida: ADR de adopción, prototipo sin secretos, pruebas de contrato y estructu
 - [ ] Conectar Search Console del piloto con consentimiento explícito y permisos mínimos.
 - [ ] Sincronizar métricas de solo lectura, procedencia y frescura.
 - [ ] Dashboard mínimo de salud y próximos pasos.
+  - [x] [Panel local con sitios sintéticos](docs/DASHBOARD_LOCAL.md): resumen, ideas, detalle de evidencias y estados de carga/error. Pantalla de salud del piloto y conexión a datos reales pendientes.
 
 Salida: Pinturas Gabriel Ferrol visible en modo lectura; ninguna modificación en Google o GitHub.
 

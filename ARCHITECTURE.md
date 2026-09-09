@@ -2,6 +2,8 @@
 
 ## 1. Objetivo y estado
 
+El [panel de demostración](docs/DASHBOARD_LOCAL.md) añade HTML/CSS/JavaScript al servidor local, sin framework nuevo. Sus consultas pasan por el mismo servicio de aplicación; el selector y las cookies son exclusivos de sitios sintéticos (ADR-016).
+
 Actualización 2026-09-09: ADR-013/014/015 seleccionan composición con DispatchSEO y Node.js/TypeScript, Fastify y Ajv. El [prototipo sintético](docs/LOCAL_PROTOTYPE.md) y el [adaptador al motor real](docs/spikes/gabi-dispatch-report.md) usan la misma política de aplicación desde HTTP y el [MCP propio de Gabi](docs/MCP_LOCAL.md). La descripción de capacidades upstream siguiente conserva la revisión histórica; autenticación de producción y escrituras siguen pendientes.
 
 Gabi SEO coordinará operaciones SEO verificables para varias webs desde una instalación self-hosted. Esta es una arquitectura objetivo, no una descripción de software ya implementado.

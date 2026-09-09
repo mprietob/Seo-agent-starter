@@ -1,6 +1,8 @@
 # Prototipo local de lectura
 
-La [entrada MCP de Gabi](MCP_LOCAL.md) está disponible junto a HTTP en el mismo proceso y con las mismas credenciales efímeras. La suite actual suma 27 pruebas; no se han añadido dependencias para habilitar esta entrada.
+También existe un [panel de demostración](DASHBOARD_LOCAL.md) en `/`, con los mismos datos sintéticos. El total actual es de 33 pruebas; esta entrada no añade dependencias ni habilita cuentas reales.
+
+La [entrada MCP de Gabi](MCP_LOCAL.md) está disponible junto a HTTP en el mismo proceso y con las mismas credenciales efímeras. No se añadieron dependencias para habilitar esa entrada.
 
 Extensión posterior: existe un [adaptador real de lectura al laboratorio DispatchSEO](spikes/gabi-dispatch-report.md), probado con `npm run test:dispatch`. `npm start` mantiene el modo sintético descrito aquí; no cambia silenciosamente de origen.
 

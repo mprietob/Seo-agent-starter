@@ -18,7 +18,7 @@ const tools: Tool[] = definitions.map(({ name, operation, description }) => ({
   annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false }
 }));
 
-function localOriginAllowed(app: FastifyInstance, request: FastifyRequest) {
+export function localOriginAllowed(app: FastifyInstance, request: FastifyRequest) {
   const address = app.server.address();
   if (!address || typeof address === 'string') return false;
   const hosts = [`127.0.0.1:${address.port}`, `localhost:${address.port}`];

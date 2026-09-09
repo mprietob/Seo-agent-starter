@@ -37,11 +37,13 @@ Consulta [ARCHITECTURE.md](ARCHITECTURE.md), [ROADMAP.md](ROADMAP.md) y [DECISIO
 
 ## Estado actual
 
+- [Panel local de demostración](docs/DASHBOARD_LOCAL.md) disponible en `http://127.0.0.1:4406/`: sitio, ideas y evidencias, con selector de datos ficticios. Arranque: `npm run build` y `npm start`.
+
 - Integración y stack del prototipo seleccionados en [ADR-013 y su análisis](docs/spikes/prototype-stack.md): DispatchSEO separado y fachada TypeScript. Primer corte sintético implementado: [ejecución y límites](docs/LOCAL_PROTOTYPE.md).
 
 - Documentación arquitectónica inicial: completa.
 - [Contratos v1.0.0](contracts/README.md) y [modelo de amenazas](docs/security/THREAT_MODEL.md) definidos. 55 comprobaciones de formato en Python y paridad en Ajv. Políticas de lectura sintética verificadas; autenticación de producción pendiente.
-- Código Gabi en src/: Fastify, Ajv, TypeScript y SDK MCP oficial con versiones fijadas. 27 pruebas automatizadas correctas. [MCP propio de Gabi](docs/MCP_LOCAL.md) disponible en loopback con tres lecturas y las mismas políticas HTTP.
+- Código Gabi en src/: Fastify, Ajv, TypeScript y SDK MCP oficial con versiones fijadas. 33 pruebas automatizadas correctas. Panel, HTTP y [MCP propio](docs/MCP_LOCAL.md) reutilizan la misma política de aplicación.
 - Integración: [9 escenarios HTTP Gabi→DispatchSEO](docs/spikes/gabi-dispatch-report.md) y [4 escenarios de entrada MCP](docs/spikes/gabi-mcp-results.json) correctos, en ejecuciones separadas. Harness upstream en [lab/](lab/README.md).
 - Search Console, GitHub y otras cuentas: no conectadas.
 - Producción: sin despliegue. Upstream probado en Docker local con datos sintéticos; contenedores detenidos al terminar.

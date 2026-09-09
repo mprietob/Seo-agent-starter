@@ -125,10 +125,19 @@ Gabi expone tres herramientas de lectura por Streamable HTTP en loopback, reutil
 
 Se eligen respuestas JSON finitas sin batches ni streams de notificaciones. Host/Origin locales, cuerpo acotado, no-store y errores redactados forman parte de esta entrada. El [contrato operativo y sus pruebas](docs/MCP_LOCAL.md) documentan siete grupos nuevos y cuatro escenarios integrados hasta DispatchSEO. Este cambio no añade dependencias ni configura clientes personales. El soporte remoto y la autenticación de producción requieren una tanda posterior.
 
-## Decisiones pendientes tras ADR-015
+## ADR-016 — Panel ligero y acceso exclusivo de demostración
+
+- Estado: implementada para datos sintéticos; autenticación de producción pendiente
+- Fecha: 2026-09-09
+
+El primer panel reutiliza Fastify y createService con assets HTML/CSS/JavaScript locales, sin nuevas dependencias. Se muestran lecturas de sitio, ideas y evidencia sin añadir operaciones SEO. La selección entre dos sitios ficticios se monta explícitamente en el arranque sintético, emite una cookie HttpOnly por navegador y revoca la anterior al cambiar o cerrar. No es una puerta de acceso a conexiones reales: el montaje requiere SyntheticRepository y las otras entradas conservan su autenticación por cabecera.
+
+El [documento del panel](docs/DASHBOARD_LOCAL.md) define controles de origen, contenido, estados de interfaz y límites de las credenciales efímeras. Se verificaron 33 pruebas y el flujo visual en escritorio/móvil. La decisión mantiene abierta la autenticación operativa y la persistencia; el panel no afirma frescura ni resultados SEO no observados.
+
+## Decisiones pendientes tras ADR-016
 
 1. Adopción de escrituras y actualización de versión de DispatchSEO tras probar la fachada de lectura.
-2. Stack de dashboard y worker; versiones exactas del prototipo se fijarán al instalar.
+2. Evolución del dashboard y stack del worker; el panel inicial usa assets locales y Fastify.
 3. Base de datos, migraciones y almacén de secretos para self-hosting.
 4. Ampliación del contrato de lectura y transporte seguro fuera del laboratorio.
 5. Proveedor y alcance de Search Console: OAuth, cuenta de servicio o ambos.
