@@ -100,10 +100,17 @@ Se fija [v1.0.0](contracts/README.md) como primera base de contratos Gabi, con J
 
 Se especifican [amenazas, retención y requisitos del almacén de secretos](docs/security/THREAT_MODEL.md), sin elegir backend. Se reutiliza jsonschema con dependencias fijadas y aisladas para comprobar el formato en desarrollo; esto no selecciona Python ni dependencias para la aplicación. Los 55 checks no prueban autorización, aislamiento, idempotencia ni cifrado. Esas pruebas son condición del prototipo antes del piloto.
 
-## Decisiones pendientes de implementación y adopción
+## ADR-013 — Composición para lecturas y stack del prototipo
 
-1. Modalidad exacta de reutilización y versión fijada de DispatchSEO.
-2. Stack de implementación de Gabi tras los spikes, sin asumir Next.js por herencia del upstream.
+- Estado: aceptada para prototipo local; habilitación de producción pendiente
+- Fecha: 2026-09-09
+
+Se adopta DispatchSEO sin modificar, en la versión ensayada, detrás de un adaptador MCP privado para lecturas. La topología elegida para el futuro piloto es una instancia por sitio con credenciales limitadas; la instancia compartida del laboratorio solo sirve para pruebas. No se adopta su autoridad de aprobación ni se habilitan escrituras. Se selecciona Node.js 24 LTS, TypeScript, Fastify 5 y Ajv 8/2020-12 para la fachada, reutilizando el SDK oficial MCP al conectar el motor. El [análisis y criterios de aceptación](docs/spikes/prototype-stack.md) delimitan alternativas, dependencias, riesgos y pruebas pendientes. El primer corte usa datos sintéticos en memoria; persistencia, autenticación de producción y secretos siguen pendientes.
+
+## Decisiones pendientes tras ADR-013
+
+1. Adopción de escrituras y actualización de versión de DispatchSEO tras probar la fachada de lectura.
+2. Stack de dashboard y worker; versiones exactas del prototipo se fijarán al instalar.
 3. Base de datos, migraciones y almacén de secretos para self-hosting.
 4. Contrato y transporte entre Gabi y el motor upstream.
 5. Proveedor y alcance de Search Console: OAuth, cuenta de servicio o ambos.

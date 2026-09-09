@@ -17,10 +17,11 @@ El roadmap describe resultados verificables, no fechas comprometidas. Cada tanda
 - [ ] Inventariar contratos MCP/API necesarios y comprobar aislamiento multi-site.
   - Esquemas reales capturados: 73 herramientas agente y 19 chat. Lecturas, concurrencia y escrituras cruzadas de ideas ensayadas; aislamiento de credenciales, fallbacks y otros casos del [plan](docs/spikes/dispatchseo-contract-plan.md) todavía pendientes.
   - [C06/C13 caracterizados con fallos y proveedores simulados](docs/spikes/dispatchseo-fault-report.md): tres diferencias respecto a los requisitos Gabi. ADR-011 fija restricciones; pruebas completas de la fachada y credenciales aún pendientes.
-- [ ] Decidir: servicio upstream sin modificar, fork AGPL o adaptadores selectivos.
+- [x] Decidir modalidad para el prototipo: servicio sin modificar detrás de fachada de lectura, ADR-013. Escrituras y producción pendientes.
 - [x] Definir contratos `Site`, `Idea`, `Approval`, `Run`, `Evidence` y eventos versionados: [v1.0.0](contracts/README.md), con 55 comprobaciones de formato/entrada. Políticas de servicio pendientes de implementar.
 - [x] Especificar threat model, retención, cifrado y almacén de secretos: [modelo](docs/security/THREAT_MODEL.md). Backend de secretos y comprobación de controles pendientes.
-- [ ] Seleccionar stack delgada y justificadamente; solo entonces añadir dependencias.
+- [x] Seleccionar stack delgada y justificadamente: [Node.js/TypeScript, Fastify y Ajv](docs/spikes/prototype-stack.md). Instalación y compatibilidad aún pendientes.
+- [ ] Implementar primer corte de lectura sintética y pruebas de políticas descritas en ADR-013.
 
 Salida: ADR de adopción, prototipo sin secretos, pruebas de contrato y estructura mínima de módulos.
 

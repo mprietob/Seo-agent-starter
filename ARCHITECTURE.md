@@ -2,6 +2,8 @@
 
 ## 1. Objetivo y estado
 
+Actualización 2026-09-09: [ADR-013](DECISIONS.md) selecciona composición con DispatchSEO y Node.js/TypeScript, Fastify y Ajv para el prototipo de lectura. La descripción de capacidades upstream siguiente conserva la revisión histórica; la adopción de escrituras y la implementación de la fachada siguen pendientes. Véase el [corte implementable](docs/spikes/prototype-stack.md).
+
 Gabi SEO coordinará operaciones SEO verificables para varias webs desde una instalación self-hosted. Esta es una arquitectura objetivo, no una descripción de software ya implementado.
 
 El sistema debe poder aprovechar un motor open-source maduro, aportar capacidades diferenciales y exponer el mismo modelo operativo a dashboard, automatizaciones y clientes MCP.

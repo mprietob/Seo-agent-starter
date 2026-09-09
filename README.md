@@ -37,6 +37,8 @@ Consulta [ARCHITECTURE.md](ARCHITECTURE.md), [ROADMAP.md](ROADMAP.md) y [DECISIO
 
 ## Estado actual
 
+- Integración y stack del prototipo seleccionados en [ADR-013 y su análisis](docs/spikes/prototype-stack.md): DispatchSEO separado, fachada TypeScript y primer corte de lectura sintética pendiente de implementar.
+
 - Documentación arquitectónica inicial: completa.
 - [Contratos v1.0.0](contracts/README.md) y [modelo de amenazas](docs/security/THREAT_MODEL.md) definidos. Validador de desarrollo aislado: 55 comprobaciones de formato; autorización real pendiente de implementar.
 - Dependencias y código de aplicación Gabi: ninguno. Harness de laboratorio en [lab/](lab/README.md), sin dependencias propias.
