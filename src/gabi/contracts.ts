@@ -9,6 +9,26 @@ const ajv = new Ajv2020({ coerceTypes: false, removeAdditional: false, useDefaul
 addFormats(ajv);
 ajv.addSchema(schema);
 export type Row = Record<string, unknown>;
+// Tool discovery reuses the Command payload schema rather than a second model.
+export function payloadSchema(operation: string): Row {
+  function inline(value: unknown): unknown {
+    if (Array.isArray(value)) return value.map(inline);
+    if (value && typeof value === 'object') {
+      const row = value as Row;
+      if (typeof row.$ref === 'string') {
+        const name = row.$ref.replace('#/$defs/', '');
+        if (row.$ref !== `#/$defs/${name}` || !schema.$defs[name]) throw new Error('Unsupported schema reference');
+        return inline(schema.$defs[name]);
+      }
+      return Object.fromEntries(Object.entries(row).map(([key, item]) => [key, inline(item)]));
+    }
+    return value;
+  }
+  for (const branch of schema.$defs.Command.allOf) {
+    if (branch.if.properties.operation.const === operation) return inline(branch.then.properties.payload) as Row;
+  }
+  throw new Error('Unknown command operation');
+}
 export const validates = (name: string, value: unknown): boolean => {
   const validator = ajv.getSchema(`${schema.$id}#/$defs/${name}`);
   if (!validator) throw new Error('Unknown contract');

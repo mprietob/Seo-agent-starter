@@ -31,6 +31,7 @@ Salida: ADR de adopción, prototipo sin secretos, pruebas de contrato y estructu
 - [ ] Registro multi-site y ubicaciones con aislamiento probado.
 - [ ] Cola/tareas, aprobación humana, auditoría e idempotencia.
 - [ ] Fachada MCP mínima con lectura de proyecto y gestión de cola.
+  - [x] Lecturas locales de sitio, ideas y evidencia mediante [MCP Gabi](docs/MCP_LOCAL.md), con siete grupos de pruebas nuevos y cuatro escenarios contra DispatchSEO real. Escrituras de cola y autenticación operativa siguen pendientes.
 - [ ] Conectar Search Console del piloto con consentimiento explícito y permisos mínimos.
 - [ ] Sincronizar métricas de solo lectura, procedencia y frescura.
 - [ ] Dashboard mínimo de salud y próximos pasos.

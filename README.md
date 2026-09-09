@@ -41,7 +41,8 @@ Consulta [ARCHITECTURE.md](ARCHITECTURE.md), [ROADMAP.md](ROADMAP.md) y [DECISIO
 
 - Documentación arquitectónica inicial: completa.
 - [Contratos v1.0.0](contracts/README.md) y [modelo de amenazas](docs/security/THREAT_MODEL.md) definidos. 55 comprobaciones de formato en Python y paridad en Ajv. Políticas de lectura sintética verificadas; autenticación de producción pendiente.
-- Código Gabi en src/: Fastify, Ajv, TypeScript y SDK MCP oficial con versiones fijadas. 20 pruebas automatizadas y [9 escenarios integrados Gabi→DispatchSEO](docs/spikes/gabi-dispatch-report.md) correctos. Harness upstream separado en [lab/](lab/README.md).
+- Código Gabi en src/: Fastify, Ajv, TypeScript y SDK MCP oficial con versiones fijadas. 27 pruebas automatizadas correctas. [MCP propio de Gabi](docs/MCP_LOCAL.md) disponible en loopback con tres lecturas y las mismas políticas HTTP.
+- Integración: [9 escenarios HTTP Gabi→DispatchSEO](docs/spikes/gabi-dispatch-report.md) y [4 escenarios de entrada MCP](docs/spikes/gabi-mcp-results.json) correctos, en ejecuciones separadas. Harness upstream en [lab/](lab/README.md).
 - Search Console, GitHub y otras cuentas: no conectadas.
 - Producción: sin despliegue. Upstream probado en Docker local con datos sintéticos; contenedores detenidos al terminar.
 - Tanda 1 en curso: [matriz](docs/spikes/dispatchseo-evaluation.md), [inventario MCP](docs/spikes/dispatchseo-mcp-inventory.json), [plan de contratos](docs/spikes/dispatchseo-contract-plan.md) e [informe del ensayo](docs/spikes/dispatchseo-lab-report.md). 12 comprobaciones de caracterización correctas; adopción e aislamiento integral pendientes.

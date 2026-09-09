@@ -11,7 +11,8 @@
     "build": "tsc",
     "test": "npm run build && node --test dist/test/*.test.js",
     "start": "node dist/src/local.js",
-    "test:dispatch": "npm run build && node lab/facade-check.mjs"
+    "test:dispatch": "npm run build && node lab/facade-check.mjs",
+    "test:mcp:dispatch": "npm run build && node lab/facade-check.mjs --mcp"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.30.0",

@@ -9,5 +9,5 @@ const app = createApp(auth, repo);
 await app.listen({ host: '127.0.0.1', port: 4406 });
 mkdirSync('.local', { recursive: true });
 writeFileSync('.local/synthetic-access.json', JSON.stringify(grants, null, 2), { mode: 0o600 });
-console.log('Gabi sintético: http://127.0.0.1:4406/v1/commands. Acceso efímero en .local/synthetic-access.json; sin proveedores conectados.');
+console.log('Gabi sintético: HTTP /v1/commands y MCP /mcp en http://127.0.0.1:4406. Acceso efímero en .local/synthetic-access.json; sin proveedores conectados.');
 for (const signal of ['SIGINT', 'SIGTERM'] as const) process.on(signal, () => { void app.close().then(() => process.exit(0)); });

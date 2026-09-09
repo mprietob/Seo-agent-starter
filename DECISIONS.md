@@ -116,7 +116,16 @@ El [adaptador ensayado](docs/spikes/gabi-dispatch-report.md) reutiliza SDK MCP 1
 
 El transporte actual solo admite loopback sin redirects, respuestas acotadas y deadline por llamada. La red Docker aislada es obligatoria para impedir probes externos ante cambios concurrentes de configuración. El 401 upstream se normaliza como dependencia no disponible, dada la ambigüedad demostrada con fallos de BD. Las garantías y límites están documentados junto con nueve escenarios reales y las pruebas de normalización/errores. Quedan pendientes la entrada MCP pública de Gabi, autenticación de producción, persistencia, reintentos operativos y SecretStore.
 
-## Decisiones pendientes tras ADR-014
+## ADR-015 — Entrada MCP sin estado y política común
+
+- Estado: implementada y ensayada en laboratorio; producción pendiente
+- Fecha: 2026-09-09
+
+Gabi expone tres herramientas de lectura por Streamable HTTP en loopback, reutilizando Server y transporte del SDK MCP 1.30.0. Cada POST autentica y crea un servidor sin sesión persistente; initialize no conserva privilegios. Los argumentos se traducen a Command v1 y llaman al mismo servicio que HTTP; sus esquemas se derivan del contrato existente. No hay reenvío arbitrario de herramientas upstream ni autoridad de aprobación.
+
+Se eligen respuestas JSON finitas sin batches ni streams de notificaciones. Host/Origin locales, cuerpo acotado, no-store y errores redactados forman parte de esta entrada. El [contrato operativo y sus pruebas](docs/MCP_LOCAL.md) documentan siete grupos nuevos y cuatro escenarios integrados hasta DispatchSEO. Este cambio no añade dependencias ni configura clientes personales. El soporte remoto y la autenticación de producción requieren una tanda posterior.
+
+## Decisiones pendientes tras ADR-015
 
 1. Adopción de escrituras y actualización de versión de DispatchSEO tras probar la fachada de lectura.
 2. Stack de dashboard y worker; versiones exactas del prototipo se fijarán al instalar.
