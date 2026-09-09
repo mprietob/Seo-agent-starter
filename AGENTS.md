@@ -50,6 +50,8 @@ Construir un starter SEO open-source, self-hosted y multi-site que coordine soft
 
 ## Alcance actual
 
+ADR-013 permite además el prototipo local de lectura sintética en TypeScript: dependencias fijadas, autenticación efímera en memoria, archivos locales de acceso ignorados y pruebas HTTP en loopback. Véase docs/LOCAL_PROTOTYPE.md. Esto no habilita cuentas reales ni un despliegue de producción.
+
 La Tanda 1 permite pruebas locales descartables del upstream en Docker, autorizadas el 2026-09-09: sitios sintéticos, red interna sin salida a proveedores, puerto loopback y secretos efímeros de laboratorio fuera de Git. El acceso directo a la BD en el harness solo prepara fixtures y comprueba efectos; no es un adaptador del producto.
 
 No conectes cuentas reales de Search Console, Google Business Profile, GitHub ni INIMA. No despliegues en producción. El laboratorio no habilita publicación, cron ni builders, y no introduce código upstream en el producto.

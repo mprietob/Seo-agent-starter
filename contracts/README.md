@@ -1,6 +1,6 @@
 # Contratos Gabi 1.0.0
 
-Estado: especificación del 2026-09-09; no existe todavía un servicio que aplique estas políticas. [schema.json](v1/schema.json) usa JSON Schema 2020-12. Los ejemplos son sintéticos e independientes, no una base de datos coherente. La elección de stack y de modalidad de adopción de DispatchSEO sigue pendiente.
+Estado: especificación del 2026-09-09. [schema.json](v1/schema.json) usa JSON Schema 2020-12. Los ejemplos son sintéticos e independientes, no una base de datos coherente. ADR-013 seleccionó stack y adopción acotada; el [prototipo local](../docs/LOCAL_PROTOTYPE.md) implementa únicamente las tres lecturas y políticas sintéticas. Las reglas de escrituras y producción de este documento siguen pendientes.
 
 ## Validación reproducible
 

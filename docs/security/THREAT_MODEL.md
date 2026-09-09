@@ -1,5 +1,7 @@
 # Modelo de amenazas y operación segura
 
+Actualización de implementación: el [prototipo sintético](../LOCAL_PROTOTYPE.md) prueba políticas de lectura, revocación y errores con dos sitios. Los controles de proveedores, persistencia, secretos y producción descritos aquí siguen pendientes.
+
 Fecha: 2026-09-09. Especificación para el futuro prototipo, no garantía de controles implementados. Basada en [ADR-011](../../DECISIONS.md) y en los [ensayos sintéticos](../spikes/dispatchseo-fault-report.md). No se han conectado cuentas reales ni evaluado exhaustivamente el upstream.
 
 ## Activos y límites
