@@ -159,6 +159,8 @@ Los adaptadores reciben eventos minimizados y consentidos. Los informes correlac
 
 ## 7. Seguridad y operación
 
+La especificación verificable inicial está en [contratos v1.0.0](contracts/README.md) y el [modelo de amenazas](docs/security/THREAT_MODEL.md). Son requisitos pendientes de implementar, sin selección de stack. Una evidencia con instante de observación o frescura desconocidos conserva null y freshness unknown; no se inventan fechas para completar el registro.
+
 - Aislamiento por tenant también en workers, cachés, búsquedas y logs.
 - Tokens con alcance por sitio e integración; rotación y revocación.
 - Cifrado en reposo, redacción de logs y referencias a secretos.

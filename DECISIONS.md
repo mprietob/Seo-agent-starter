@@ -91,7 +91,16 @@ El primer contrato tendrá una lista explícita de capacidades; no usará nombre
 
 Una instancia por sitio con credenciales restringidas es una alternativa a evaluar; no basta separarla si conserva permisos externos amplios. Una instancia compartida necesitaría controles que impidan saltarse la fachada. No se selecciona todavía ninguna de las dos topologías ni el stack del producto.
 
-## Decisiones pendientes
+## ADR-012 — Contratos cerrados y contexto autenticado
+
+- Estado: aceptada como especificación; implementación pendiente
+- Fecha: 2026-09-09
+
+Se fija [v1.0.0](contracts/README.md) como primera base de contratos Gabi, con JSON Schema 2020-12 y ejemplos sintéticos. La entrada valida Command específicamente; los registros Approval/Event no son instrucciones aceptables del cliente. El contexto autenticado fija sitio e identidad. Las versiones desconocidas se rechazan y los efectos inciertos exigen conciliación. Publicación y merge permanecen desactivados.
+
+Se especifican [amenazas, retención y requisitos del almacén de secretos](docs/security/THREAT_MODEL.md), sin elegir backend. Se reutiliza jsonschema con dependencias fijadas y aisladas para comprobar el formato en desarrollo; esto no selecciona Python ni dependencias para la aplicación. Los 55 checks no prueban autorización, aislamiento, idempotencia ni cifrado. Esas pruebas son condición del prototipo antes del piloto.
+
+## Decisiones pendientes de implementación y adopción
 
 1. Modalidad exacta de reutilización y versión fijada de DispatchSEO.
 2. Stack de implementación de Gabi tras los spikes, sin asumir Next.js por herencia del upstream.

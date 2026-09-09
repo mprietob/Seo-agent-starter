@@ -144,3 +144,7 @@ vite.config.ts.timestamp-*
 
 # Local architecture analysis artifacts
 graphify-out/
+
+# Isolated development validators (not application dependencies)
+.tools/
+__pycache__/

@@ -18,8 +18,8 @@ El roadmap describe resultados verificables, no fechas comprometidas. Cada tanda
   - Esquemas reales capturados: 73 herramientas agente y 19 chat. Lecturas, concurrencia y escrituras cruzadas de ideas ensayadas; aislamiento de credenciales, fallbacks y otros casos del [plan](docs/spikes/dispatchseo-contract-plan.md) todavía pendientes.
   - [C06/C13 caracterizados con fallos y proveedores simulados](docs/spikes/dispatchseo-fault-report.md): tres diferencias respecto a los requisitos Gabi. ADR-011 fija restricciones; pruebas completas de la fachada y credenciales aún pendientes.
 - [ ] Decidir: servicio upstream sin modificar, fork AGPL o adaptadores selectivos.
-- [ ] Definir contratos `Site`, `Idea`, `Approval`, `Run`, `Evidence` y eventos versionados.
-- [ ] Especificar threat model, retención, cifrado y almacén de secretos.
+- [x] Definir contratos `Site`, `Idea`, `Approval`, `Run`, `Evidence` y eventos versionados: [v1.0.0](contracts/README.md), con 55 comprobaciones de formato/entrada. Políticas de servicio pendientes de implementar.
+- [x] Especificar threat model, retención, cifrado y almacén de secretos: [modelo](docs/security/THREAT_MODEL.md). Backend de secretos y comprobación de controles pendientes.
 - [ ] Seleccionar stack delgada y justificadamente; solo entonces añadir dependencias.
 
 Salida: ADR de adopción, prototipo sin secretos, pruebas de contrato y estructura mínima de módulos.

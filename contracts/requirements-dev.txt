@@ -1,0 +1,11 @@
+# Schema validation only; not the application stack.
+jsonschema==4.25.1
+attrs==26.1.0
+jsonschema-specifications==2025.9.1
+referencing==0.37.0
+rpds-py==2026.6.3
+typing-extensions==4.16.0
+# Enable the date-time and hostname format checks used by the contracts.
+fqdn==1.5.1
+rfc3339-validator==0.1.4
+six==1.17.0

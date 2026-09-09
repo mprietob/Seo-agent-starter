@@ -1,0 +1,1165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:gabi-seo:contracts:1.0.0",
+  "title": "Gabi SEO contracts v1.0.0 — shape only; authorization is server-side",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Site"
+    },
+    {
+      "$ref": "#/$defs/Idea"
+    },
+    {
+      "$ref": "#/$defs/Approval"
+    },
+    {
+      "$ref": "#/$defs/Run"
+    },
+    {
+      "$ref": "#/$defs/Evidence"
+    },
+    {
+      "$ref": "#/$defs/Event"
+    },
+    {
+      "$ref": "#/$defs/Command"
+    },
+    {
+      "$ref": "#/$defs/Error"
+    }
+  ],
+  "$defs": {
+    "UUID": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "Revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "Actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "actor_type": {
+          "enum": [
+            "human",
+            "service",
+            "agent"
+          ]
+        }
+      },
+      "required": [
+        "actor_id",
+        "actor_type"
+      ]
+    },
+    "Human": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "actor_type": {
+          "const": "human"
+        }
+      },
+      "required": [
+        "actor_id",
+        "actor_type"
+      ]
+    },
+    "PR": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repository_ref": {
+          "$ref": "#/$defs/UUID"
+        },
+        "number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "head_sha": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        }
+      },
+      "required": [
+        "repository_ref",
+        "number",
+        "head_sha"
+      ]
+    },
+    "Site": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_type": {
+          "const": "Site"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "site_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "revision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "domain": {
+          "type": "string",
+          "format": "hostname",
+          "maxLength": 253
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "status": {
+          "enum": [
+            "active",
+            "suspended"
+          ]
+        },
+        "created_at": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "record_type",
+        "schema_version",
+        "site_id",
+        "revision",
+        "name",
+        "domain",
+        "timezone",
+        "status",
+        "created_at"
+      ]
+    },
+    "Idea": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_type": {
+          "const": "Idea"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "site_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "idea_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "revision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "type": {
+          "enum": [
+            "guide",
+            "tool",
+            "backlink",
+            "update"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "approved",
+            "rejected",
+            "in_progress",
+            "pr_open",
+            "cancelled"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UUID"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "approval_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/UUID"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pr_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PR"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "record_type",
+        "schema_version",
+        "site_id",
+        "idea_id",
+        "revision",
+        "type",
+        "title",
+        "rationale",
+        "status",
+        "evidence_refs",
+        "approval_ref",
+        "pr_ref",
+        "created_at"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "approved",
+                  "in_progress",
+                  "pr_open"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "approval_ref": {
+                "$ref": "#/$defs/UUID"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "pr_open"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "pr_ref": {
+                "$ref": "#/$defs/PR"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "pr_ref": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_type": {
+          "const": "Approval"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "site_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "approval_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "actor": {
+          "$ref": "#/$defs/Human"
+        },
+        "action": {
+          "enum": [
+            "idea.approve",
+            "publication.open_pr"
+          ]
+        },
+        "target_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "target_revision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "decision": {
+          "enum": [
+            "granted",
+            "denied"
+          ]
+        },
+        "decided_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "expires_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "policy_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32
+        }
+      },
+      "required": [
+        "record_type",
+        "schema_version",
+        "site_id",
+        "approval_id",
+        "actor",
+        "action",
+        "target_id",
+        "target_revision",
+        "decision",
+        "decided_at",
+        "expires_at",
+        "policy_version"
+      ]
+    },
+    "Run": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_type": {
+          "const": "Run"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "site_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "run_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "operation": {
+          "enum": [
+            "evidence.read",
+            "idea.propose",
+            "publication.open_pr"
+          ]
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "idempotency_key": {
+          "$ref": "#/$defs/UUID"
+        },
+        "status": {
+          "enum": [
+            "queued",
+            "running",
+            "succeeded",
+            "failed",
+            "unknown",
+            "cancelled"
+          ]
+        },
+        "attempt": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "created_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "started_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "finished_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "error_code": {
+          "anyOf": [
+            {
+              "enum": [
+                "dependency_unavailable",
+                "upstream_rejected",
+                "invalid_upstream_response",
+                "outcome_unknown",
+                "policy_denied"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UUID"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "record_type",
+        "schema_version",
+        "site_id",
+        "run_id",
+        "operation",
+        "actor",
+        "idempotency_key",
+        "status",
+        "attempt",
+        "created_at",
+        "started_at",
+        "finished_at",
+        "error_code",
+        "evidence_refs"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "queued"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "started_at": {
+                "type": "null"
+              },
+              "finished_at": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "running"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "started_at": {
+                "$ref": "#/$defs/Timestamp"
+              },
+              "finished_at": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "succeeded",
+                  "failed",
+                  "cancelled"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "finished_at": {
+                "$ref": "#/$defs/Timestamp"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "finished_at": {
+                "type": "null"
+              },
+              "error_code": {
+                "const": "outcome_unknown"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "succeeded"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "error_code": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "failed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "error_code": {
+                "enum": [
+                  "dependency_unavailable",
+                  "upstream_rejected",
+                  "invalid_upstream_response",
+                  "policy_denied"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_type": {
+          "const": "Evidence"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "site_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "evidence_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "source": {
+          "enum": [
+            "dispatchseo",
+            "gsc",
+            "github",
+            "synthetic"
+          ]
+        },
+        "classification": {
+          "enum": [
+            "observation",
+            "inference",
+            "recommendation"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "captured_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "fresh_until": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "freshness": {
+          "enum": [
+            "fresh",
+            "stale",
+            "unknown"
+          ]
+        },
+        "payload_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "record_type",
+        "schema_version",
+        "site_id",
+        "evidence_id",
+        "source",
+        "classification",
+        "summary",
+        "source_ref",
+        "observed_at",
+        "captured_at",
+        "fresh_until",
+        "freshness",
+        "payload_digest"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "freshness": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "fresh_until": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "freshness": {
+                "enum": [
+                  "fresh",
+                  "stale"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "observed_at": {
+                "$ref": "#/$defs/Timestamp"
+              },
+              "fresh_until": {
+                "$ref": "#/$defs/Timestamp"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_type": {
+          "const": "Event"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "site_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "event_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "event_type": {
+          "enum": [
+            "idea.created",
+            "approval.granted",
+            "metric.observed",
+            "publication.merged"
+          ]
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "correlation_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "record_type",
+        "schema_version",
+        "site_id",
+        "event_id",
+        "event_type",
+        "occurred_at",
+        "correlation_id",
+        "payload"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "idea.created"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "idea_id": {
+                    "$ref": "#/$defs/UUID"
+                  },
+                  "revision": {
+                    "$ref": "#/$defs/Revision"
+                  }
+                },
+                "required": [
+                  "idea_id",
+                  "revision"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "approval.granted"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "approval_id": {
+                    "$ref": "#/$defs/UUID"
+                  },
+                  "target_id": {
+                    "$ref": "#/$defs/UUID"
+                  },
+                  "target_revision": {
+                    "$ref": "#/$defs/Revision"
+                  }
+                },
+                "required": [
+                  "approval_id",
+                  "target_id",
+                  "target_revision"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "metric.observed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "evidence_id": {
+                    "$ref": "#/$defs/UUID"
+                  }
+                },
+                "required": [
+                  "evidence_id"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "publication.merged"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "publication_id": {
+                    "$ref": "#/$defs/UUID"
+                  },
+                  "pr": {
+                    "$ref": "#/$defs/PR"
+                  },
+                  "merge_sha": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{40}$"
+                  },
+                  "evidence_id": {
+                    "$ref": "#/$defs/UUID"
+                  }
+                },
+                "required": [
+                  "publication_id",
+                  "pr",
+                  "merge_sha",
+                  "evidence_id"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Command": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "record_type": {
+          "const": "Command"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "request_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "operation": {
+          "enum": [
+            "site.read",
+            "ideas.list",
+            "evidence.read",
+            "idea.propose"
+          ]
+        },
+        "payload": {
+          "type": "object"
+        },
+        "idempotency_key": {
+          "$ref": "#/$defs/UUID"
+        }
+      },
+      "required": [
+        "record_type",
+        "schema_version",
+        "request_id",
+        "operation",
+        "payload"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "site.read"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {},
+                "required": []
+              }
+            },
+            "not": {
+              "required": [
+                "idempotency_key"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "ideas.list"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "pending",
+                      "approved",
+                      "rejected",
+                      "in_progress",
+                      "pr_open",
+                      "cancelled"
+                    ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "cursor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 512
+                  }
+                },
+                "required": []
+              }
+            },
+            "not": {
+              "required": [
+                "idempotency_key"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "evidence.read"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "evidence_id": {
+                    "$ref": "#/$defs/UUID"
+                  }
+                },
+                "required": [
+                  "evidence_id"
+                ]
+              }
+            },
+            "not": {
+              "required": [
+                "idempotency_key"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "idea.propose"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "guide",
+                      "tool",
+                      "backlink",
+                      "update"
+                    ]
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "rationale": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4000
+                  },
+                  "evidence_refs": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/UUID"
+                    },
+                    "maxItems": 100,
+                    "uniqueItems": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "title",
+                  "rationale",
+                  "evidence_refs"
+                ]
+              }
+            },
+            "required": [
+              "idempotency_key"
+            ]
+          }
+        }
+      ]
+    },
+    "Error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "schema_version",
+        "request_id",
+        "code",
+        "retry_hint"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "Error"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "request_id": {
+          "$ref": "#/$defs/UUID"
+        },
+        "code": {
+          "enum": [
+            "invalid_request",
+            "unauthenticated",
+            "not_found_or_forbidden",
+            "revision_conflict",
+            "approval_required",
+            "approval_expired",
+            "dependency_unavailable",
+            "invalid_upstream_response",
+            "outcome_unknown"
+          ]
+        },
+        "retry_hint": {
+          "enum": [
+            "none",
+            "bounded_read_retry",
+            "reconcile"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "code": {
+                "const": "outcome_unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "retry_hint": {
+                "const": "reconcile"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "invalid_request",
+                  "unauthenticated",
+                  "not_found_or_forbidden",
+                  "revision_conflict",
+                  "approval_required",
+                  "approval_expired",
+                  "invalid_upstream_response"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "retry_hint": {
+                "const": "none"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

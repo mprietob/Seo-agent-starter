@@ -38,6 +38,7 @@ Consulta [ARCHITECTURE.md](ARCHITECTURE.md), [ROADMAP.md](ROADMAP.md) y [DECISIO
 ## Estado actual
 
 - Documentación arquitectónica inicial: completa.
+- [Contratos v1.0.0](contracts/README.md) y [modelo de amenazas](docs/security/THREAT_MODEL.md) definidos. Validador de desarrollo aislado: 55 comprobaciones de formato; autorización real pendiente de implementar.
 - Dependencias y código de aplicación Gabi: ninguno. Harness de laboratorio en [lab/](lab/README.md), sin dependencias propias.
 - Search Console, GitHub y otras cuentas: no conectadas.
 - Producción: sin despliegue. Upstream probado en Docker local con datos sintéticos; contenedores detenidos al terminar.

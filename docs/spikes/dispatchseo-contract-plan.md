@@ -1,5 +1,7 @@
 # Contratos y plan de ensayo de DispatchSEO
 
+La especificación Gabi resultante está en [contratos v1.0.0](../../contracts/README.md). Este plan conserva los ensayos upstream y sus pendientes; no constituye el contrato de entrada de Gabi.
+
 Estado: plan de Tanda 1 parcialmente ensayado el 2026-09-09. El [informe del laboratorio](dispatchseo-lab-report.md) distingue caracterización upstream de requisitos Gabi aún pendientes; este documento conserva el plan original.
 Versión evaluada: fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26.
 Base: [evaluación y fuentes](dispatchseo-evaluation.md).
