@@ -1,5 +1,7 @@
 # Laboratorio local de DispatchSEO
 
+El [ensayo integrado de la fachada Gabi](../docs/spikes/gabi-dispatch-report.md) se ejecuta con `npm run test:dispatch` después de Up. A diferencia del probe original, entra por HTTP de Gabi y reutiliza el SDK oficial MCP para consultar el motor. Su harness prepara fixtures, rota credenciales sintéticas y detiene temporalmente PostgREST para probar recuperación. Detener el laboratorio al terminar con `./lab/run.ps1 Stop`.
+
 Harness de caracterización de Tanda 1, no aplicación Gabi. Usa el upstream sin modificar en una carpeta hermana y no incorpora su código al producto. DispatchSEO conserva su licencia AGPL y atribución: https://github.com/NeoZi12/dispatchseo.
 
 ## Preparación

@@ -107,12 +107,21 @@ Se especifican [amenazas, retención y requisitos del almacén de secretos](docs
 
 Se adopta DispatchSEO sin modificar, en la versión ensayada, detrás de un adaptador MCP privado para lecturas. La topología elegida para el futuro piloto es una instancia por sitio con credenciales limitadas; la instancia compartida del laboratorio solo sirve para pruebas. No se adopta su autoridad de aprobación ni se habilitan escrituras. Se selecciona Node.js 24 LTS, TypeScript, Fastify 5 y Ajv 8/2020-12 para la fachada, reutilizando el SDK oficial MCP al conectar el motor. El [análisis y criterios de aceptación](docs/spikes/prototype-stack.md) delimitan alternativas, dependencias, riesgos y pruebas pendientes. El primer corte usa datos sintéticos en memoria; persistencia, autenticación de producción y secretos siguen pendientes.
 
-## Decisiones pendientes tras ADR-013
+## ADR-014 — Proyección de lecturas upstream en el laboratorio
+
+- Estado: aceptada e implementada para laboratorio; no habilita producción
+- Fecha: 2026-09-09
+
+El [adaptador ensayado](docs/spikes/gabi-dispatch-report.md) reutiliza SDK MCP 1.30.0 y solo llama get_project, get_suggestions y get_site_stats. ideas.list usa pending por defecto y admite rejected; no traduce aprobaciones upstream a aprobaciones Gabi. Las revisiones de la proyección son locales al proceso, sin validez para autorizar acciones futuras. Las evidencias son capturas inmutables minimizadas, iniciadas por el operador y consultadas por ID/sitio; no se inventan enlaces con ideas ni frescura.
+
+El transporte actual solo admite loopback sin redirects, respuestas acotadas y deadline por llamada. La red Docker aislada es obligatoria para impedir probes externos ante cambios concurrentes de configuración. El 401 upstream se normaliza como dependencia no disponible, dada la ambigüedad demostrada con fallos de BD. Las garantías y límites están documentados junto con nueve escenarios reales y las pruebas de normalización/errores. Quedan pendientes la entrada MCP pública de Gabi, autenticación de producción, persistencia, reintentos operativos y SecretStore.
+
+## Decisiones pendientes tras ADR-014
 
 1. Adopción de escrituras y actualización de versión de DispatchSEO tras probar la fachada de lectura.
 2. Stack de dashboard y worker; versiones exactas del prototipo se fijarán al instalar.
 3. Base de datos, migraciones y almacén de secretos para self-hosting.
-4. Contrato y transporte entre Gabi y el motor upstream.
+4. Ampliación del contrato de lectura y transporte seguro fuera del laboratorio.
 5. Proveedor y alcance de Search Console: OAuth, cuenta de servicio o ambos.
 6. Disponibilidad, revisión y límites de Google Business Profile API.
 7. Proveedor de analítica/conversiones y política de datos/consentimiento.

@@ -2,7 +2,7 @@
 
 ## 1. Objetivo y estado
 
-Actualización 2026-09-09: [ADR-013](DECISIONS.md) selecciona composición con DispatchSEO y Node.js/TypeScript, Fastify y Ajv. El [prototipo de lectura sintética](docs/LOCAL_PROTOTYPE.md) ya implementa una política común con adaptadores en memoria. La descripción de capacidades upstream siguiente conserva la revisión histórica; la conexión MCP al motor, la autenticación de producción y la adopción de escrituras siguen pendientes.
+Actualización 2026-09-09: ADR-013 y ADR-014 seleccionan composición con DispatchSEO y Node.js/TypeScript, Fastify y Ajv. El [prototipo sintético](docs/LOCAL_PROTOTYPE.md) y el [adaptador MCP ensayado contra DispatchSEO real en Docker](docs/spikes/gabi-dispatch-report.md) comparten la política HTTP. La descripción de capacidades upstream siguiente conserva la revisión histórica; la entrada MCP de Gabi, la autenticación de producción y la adopción de escrituras siguen pendientes.
 
 Gabi SEO coordinará operaciones SEO verificables para varias webs desde una instalación self-hosted. Esta es una arquitectura objetivo, no una descripción de software ya implementado.
 

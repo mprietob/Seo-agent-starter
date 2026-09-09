@@ -20,9 +20,9 @@ El roadmap describe resultados verificables, no fechas comprometidas. Cada tanda
 - [x] Decidir modalidad para el prototipo: servicio sin modificar detrás de fachada de lectura, ADR-013. Escrituras y producción pendientes.
 - [x] Definir contratos `Site`, `Idea`, `Approval`, `Run`, `Evidence` y eventos versionados: [v1.0.0](contracts/README.md), con 55 comprobaciones de formato/entrada. Políticas de servicio pendientes de implementar.
 - [x] Especificar threat model, retención, cifrado y almacén de secretos: [modelo](docs/security/THREAT_MODEL.md). Backend de secretos y comprobación de controles pendientes.
-- [x] Seleccionar stack delgada y justificadamente: [Node.js/TypeScript, Fastify y Ajv](docs/spikes/prototype-stack.md). Dependencias fijadas e instaladas; compatibilidad MCP con el motor pendiente.
+- [x] Seleccionar stack delgada y justificadamente: [Node.js/TypeScript, Fastify y Ajv](docs/spikes/prototype-stack.md). Dependencias fijadas e instaladas; SDK MCP 1.30.0 ensayado con las tres lecturas acotadas.
 - [x] Implementar primer corte de lectura sintética y pruebas de políticas descritas en ADR-013: [prototipo](docs/LOCAL_PROTOTYPE.md), 12 pruebas correctas.
-- [ ] Conectar adaptador MCP privado al laboratorio y probar aislamiento en la frontera Gabi↔DispatchSEO.
+- [x] Conectar adaptador MCP al laboratorio y probar aislamiento en la frontera Gabi↔DispatchSEO: [9 escenarios integrados](docs/spikes/gabi-dispatch-report.md). Red privada de producción y credenciales reales pendientes.
 
 Salida: ADR de adopción, prototipo sin secretos, pruebas de contrato y estructura mínima de módulos.
 

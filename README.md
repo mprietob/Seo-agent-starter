@@ -22,7 +22,7 @@ El producto cubrirá progresivamente investigación y seguimiento SEO, Search Co
 
 [DispatchSEO](https://github.com/NeoZi12/dispatchseo) es la referencia principal y ya resuelve gran parte del bucle SEO: estado persistente, cola y aprobaciones, multi-site, MCP, Search Console, programación, creación de pull requests, rankings, backlinks, tendencias y visibilidad en respuestas de IA. Está licenciado bajo AGPL-3.0.
 
-No se copia su código. Tras los ensayos locales, ADR-013 selecciona composición mediante MCP para lecturas, con el motor separado y sin modificar. La conexión de la fachada al motor y la adopción de escrituras siguen pendientes.
+No se copia su código. ADR-013 selecciona composición mediante MCP para lecturas, con el motor separado y sin modificar. La [conexión de la fachada al laboratorio](docs/spikes/gabi-dispatch-report.md) está probada; cuentas reales y adopción de escrituras siguen pendientes.
 
 ## Límites del sistema
 
@@ -41,7 +41,7 @@ Consulta [ARCHITECTURE.md](ARCHITECTURE.md), [ROADMAP.md](ROADMAP.md) y [DECISIO
 
 - Documentación arquitectónica inicial: completa.
 - [Contratos v1.0.0](contracts/README.md) y [modelo de amenazas](docs/security/THREAT_MODEL.md) definidos. 55 comprobaciones de formato en Python y paridad en Ajv. Políticas de lectura sintética verificadas; autenticación de producción pendiente.
-- Código Gabi en src/: Fastify, Ajv y TypeScript con versiones fijadas. 12 pruebas automatizadas correctas, incluida HTTP loopback. Harness upstream separado en [lab/](lab/README.md).
+- Código Gabi en src/: Fastify, Ajv, TypeScript y SDK MCP oficial con versiones fijadas. 20 pruebas automatizadas y [9 escenarios integrados Gabi→DispatchSEO](docs/spikes/gabi-dispatch-report.md) correctos. Harness upstream separado en [lab/](lab/README.md).
 - Search Console, GitHub y otras cuentas: no conectadas.
 - Producción: sin despliegue. Upstream probado en Docker local con datos sintéticos; contenedores detenidos al terminar.
 - Tanda 1 en curso: [matriz](docs/spikes/dispatchseo-evaluation.md), [inventario MCP](docs/spikes/dispatchseo-mcp-inventory.json), [plan de contratos](docs/spikes/dispatchseo-contract-plan.md) e [informe del ensayo](docs/spikes/dispatchseo-lab-report.md). 12 comprobaciones de caracterización correctas; adopción e aislamiento integral pendientes.

@@ -1,5 +1,7 @@
 # Prototipo local de lectura
 
+Extensión posterior: existe un [adaptador real de lectura al laboratorio DispatchSEO](spikes/gabi-dispatch-report.md), probado con `npm run test:dispatch`. `npm start` mantiene el modo sintético descrito aquí; no cambia silenciosamente de origen.
+
 Implementa el primer corte de ADR-013 con datos sintéticos en memoria. No conecta DispatchSEO, Google, GitHub ni INIMA; no persiste datos SEO y no permite escrituras. No es una autenticación de producción.
 
 ## Ejecutar
@@ -49,6 +51,6 @@ La siguiente integración debe mapear una allowlist de herramientas MCP contra l
 
 ## Dependencias reutilizadas
 
-Fastify resuelve HTTP; Ajv y ajv-formats validan el contrato existente; TypeScript comprueba tipos; node:test evita añadir otro runner. Versiones exactas en package.json y package-lock.json. El compilador se fija en TypeScript 5.9.3 deliberadamente; no se necesita migrar a una versión mayor para este corte. El SDK MCP se instalará cuando exista su adaptador. Las licencias de terceros permanecen independientes de la licencia Gabi.
+Fastify resuelve HTTP; Ajv y ajv-formats validan el contrato existente; TypeScript comprueba tipos; node:test evita añadir otro runner. Versiones exactas en package.json y package-lock.json. El compilador se fija en TypeScript 5.9.3 deliberadamente; no se necesita migrar a una versión mayor para este corte. El SDK MCP 1.30.0 alimenta el adaptador DispatchSEO del laboratorio. Las licencias de terceros permanecen independientes de la licencia Gabi.
 
-Verificado el 2026-09-09 con Node.js 24.14.1: compilación y 12 pruebas correctas. El lockfile registra 53 paquetes externos: 44 MIT, 5 BSD-3-Clause, 3 ISC y 1 Apache-2.0. La instalación sin scripts informó cero vulnerabilidades conocidas en su auditoría npm de ese momento; no equivale a una auditoría de seguridad del producto.
+Verificado el 2026-09-09 con Node.js 24.14.1: compilación y 20 pruebas correctas tras añadir el adaptador MCP. El lockfile registra 141 paquetes externos: 123 MIT, 6 BSD-3-Clause, 10 ISC, 1 BSD-2-Clause y 1 Apache-2.0. El SDK oficial añade dependencias de transporte; se reutiliza para no mantener otra implementación del protocolo. La instalación sin scripts informó cero vulnerabilidades conocidas en su auditoría npm de ese momento; no equivale a una auditoría de seguridad del producto.
