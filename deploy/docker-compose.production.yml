@@ -1,0 +1,20 @@
+services:
+  clinic-seo:
+    build: ..
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      GABI_BIND_HOST: 0.0.0.0
+    volumes:
+      - clinic_seo_data:/app/.local
+    networks:
+      inima-net:
+        aliases:
+          - clinic-seo
+
+volumes:
+  clinic_seo_data:
+
+networks:
+  inima-net:
+    external: true

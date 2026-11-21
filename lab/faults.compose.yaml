@@ -1,0 +1,16 @@
+services:
+  faults:
+    image: gabi-seo-lab:fbf28b2
+    entrypoint: [node, /lab/fault-server.mjs]
+    volumes:
+      - ./fault-server.mjs:/lab/fault-server.mjs:ro
+    networks: [isolated]
+  app:
+    environment:
+      POSTGREST_URL: http://faults:8080/db
+      NODE_OPTIONS: --import=/lab/provider-preload.mjs
+    volumes:
+      - ./provider-preload.mjs:/lab/provider-preload.mjs:ro
+    depends_on:
+      faults:
+        condition: service_started

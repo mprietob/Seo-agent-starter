@@ -1,0 +1,17 @@
+{
+  "record_type": "Idea",
+  "schema_version": "1.0.0",
+  "site_id": "00000000-0000-4000-8000-000000000001",
+  "idea_id": "00000000-0000-4000-8000-000000000002",
+  "revision": 1,
+  "type": "guide",
+  "title": "Guía de pintura sintética",
+  "rationale": "Ejemplo de contrato, sin datos de cliente.",
+  "status": "pending",
+  "evidence_refs": [
+    "00000000-0000-4000-8000-000000000005"
+  ],
+  "approval_ref": null,
+  "pr_ref": null,
+  "created_at": "2026-09-09T12:00:00Z"
+}

@@ -1,0 +1,71 @@
+name: gabi-seo-lab
+services:
+  postgres:
+    image: postgres:17-alpine@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73
+    environment:
+      POSTGRES_USER: dispatch
+      POSTGRES_DB: dispatchseo
+      POSTGRES_PASSWORD: ${LAB_DB_PASSWORD:?ephemeral lab password required}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U dispatch -d dispatchseo]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    networks: [isolated]
+  migrate:
+    image: postgres:17-alpine@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73
+    environment:
+      PGHOST: postgres
+      PGUSER: dispatch
+      PGDATABASE: dispatchseo
+      PGPASSWORD: ${LAB_DB_PASSWORD:?ephemeral lab password required}
+    volumes:
+      - ../../dispatchseo-lab-upstream/supabase/migrations/setup.sql:/setup.sql:ro
+    command: [psql, -v, ON_ERROR_STOP=1, -f, /setup.sql]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [isolated]
+  postgrest:
+    image: postgrest/postgrest:v12.2.12@sha256:5f4ce744539bbba786b4e24dbbd95bdb2a956dcf568c5374995a0ff4a68f5bd2
+    environment:
+      PGRST_DB_URI: postgres://dispatch:${LAB_DB_PASSWORD}@postgres:5432/dispatchseo
+      PGRST_DB_SCHEMAS: public
+      PGRST_DB_ANON_ROLE: dispatch
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    networks: [isolated]
+  app:
+    image: gabi-seo-lab:fbf28b2
+    build:
+      context: ../../dispatchseo-lab-upstream
+    environment:
+      POSTGREST_URL: http://postgrest:3000
+      APP_URL: http://localhost:4405
+      CRON_SECRET: ${LAB_CRON_SECRET:?ephemeral lab secret required}
+      DASHBOARD_PASSWORD: ${LAB_DASHBOARD_PASSWORD:?ephemeral lab password required}
+      DISPATCHSEO_TELEMETRY: "off"
+      NEXT_TELEMETRY_DISABLED: "1"
+    depends_on:
+      postgrest:
+        condition: service_started
+    networks: [isolated]
+  entrance:
+    image: nginx:alpine@sha256:72ba65eb42c10344912a84ff42408db7d34f2feb642204570ab8fc5ffd29f1d3
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - 127.0.0.1:4405:80
+    depends_on:
+      app:
+        condition: service_healthy
+    networks: [isolated, entrance]
+networks:
+  isolated:
+    internal: true
+  entrance: {}
+volumes:
+  pgdata:

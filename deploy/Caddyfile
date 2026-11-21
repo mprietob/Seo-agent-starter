@@ -1,0 +1,4 @@
+seo.inimamed.com {
+  encode zstd gzip
+  reverse_proxy clinic-seo:4407
+}

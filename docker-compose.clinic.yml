@@ -1,0 +1,16 @@
+services:
+  clinic-seo:
+    build: .
+    restart: unless-stopped
+    environment:
+      GABI_BIND_HOST: 0.0.0.0
+      GABI_DASHBOARD_PASSWORD: ${GABI_DASHBOARD_PASSWORD:?set this on the server}
+      GABI_REVIEWER_ID: ${GABI_REVIEWER_ID:?set a stable reviewer UUID on the server}
+      CLINIC_ZERORANK_API_KEY: ${CLINIC_ZERORANK_API_KEY:?set this on the server}
+    ports:
+      - "127.0.0.1:4407:4407"
+    volumes:
+      - clinic_seo_data:/app/.local
+
+volumes:
+  clinic_seo_data:

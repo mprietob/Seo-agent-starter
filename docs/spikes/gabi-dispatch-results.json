@@ -1,0 +1,43 @@
+{
+  "captured_at": "2026-09-09T15:27:19.821Z",
+  "upstream_commit": "fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26",
+  "sdk": "1.30.0",
+  "tests": [
+    {
+      "id": "site-and-ideas-both-directions",
+      "status": "pass"
+    },
+    {
+      "id": "snapshot-evidence-and-cross-site-denial",
+      "status": "pass"
+    },
+    {
+      "id": "concurrent-contexts",
+      "status": "pass"
+    },
+    {
+      "id": "injected-site-and-proposal-denied",
+      "status": "pass"
+    },
+    {
+      "id": "misbound-upstream-token-denied",
+      "status": "pass"
+    },
+    {
+      "id": "database-outage-fails-closed-and-recovers",
+      "status": "pass"
+    },
+    {
+      "id": "upstream-token-revocation-is-not-user-auth-failure",
+      "status": "pass"
+    },
+    {
+      "id": "gabi-token-revocation",
+      "status": "pass"
+    },
+    {
+      "id": "no-idea-or-provider-configuration-mutations",
+      "status": "pass"
+    }
+  ]
+}

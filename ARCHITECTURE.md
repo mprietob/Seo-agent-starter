@@ -2,6 +2,10 @@
 
 ## 1. Objetivo y estado
 
+El [panel de demostración](docs/DASHBOARD_LOCAL.md) añade HTML/CSS/JavaScript al servidor local, sin framework nuevo. Sus consultas pasan por el mismo servicio de aplicación; el selector y las cookies son exclusivos de sitios sintéticos (ADR-016).
+
+Actualización 2026-09-09: ADR-013/014/015 seleccionan composición con DispatchSEO y Node.js/TypeScript, Fastify y Ajv. El [prototipo sintético](docs/LOCAL_PROTOTYPE.md) y el [adaptador al motor real](docs/spikes/gabi-dispatch-report.md) usan la misma política de aplicación desde HTTP y el [MCP propio de Gabi](docs/MCP_LOCAL.md). La descripción de capacidades upstream siguiente conserva la revisión histórica; autenticación de producción y escrituras siguen pendientes.
+
 Gabi SEO coordinará operaciones SEO verificables para varias webs desde una instalación self-hosted. Esta es una arquitectura objetivo, no una descripción de software ya implementado.
 
 El sistema debe poder aprovechar un motor open-source maduro, aportar capacidades diferenciales y exponer el mismo modelo operativo a dashboard, automatizaciones y clientes MCP.
@@ -158,6 +162,8 @@ La integración ingiere una reseña, el agente propone una respuesta y una perso
 Los adaptadores reciben eventos minimizados y consentidos. Los informes correlacionan páginas/consultas con objetivos; nunca presentan correlación como causalidad.
 
 ## 7. Seguridad y operación
+
+La especificación verificable inicial está en [contratos v1.0.0](contracts/README.md) y el [modelo de amenazas](docs/security/THREAT_MODEL.md). Son requisitos pendientes de implementar, sin selección de stack. Una evidencia con instante de observación o frescura desconocidos conserva null y freshness unknown; no se inventan fechas para completar el registro.
 
 - Aislamiento por tenant también en workers, cachés, búsquedas y logs.
 - Tokens con alcance por sitio e integración; rotación y revocación.

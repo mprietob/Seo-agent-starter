@@ -1,0 +1,30 @@
+{
+  "name": "gabi-seo-starter",
+  "version": "0.1.0",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test dist/test/*.test.js",
+    "start": "node dist/src/local.js",
+    "start:clinic": "npm run build && node dist/src/clinic-local.js",
+    "start:pilot": "npm run build && node dist/src/pilot-local.js",
+    "pilot:build": "powershell -ExecutionPolicy Bypass -File pilot/build.ps1",
+    "test:dispatch": "npm run build && node lab/facade-check.mjs",
+    "test:mcp:dispatch": "npm run build && node lab/facade-check.mjs --mcp"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "fastify": "5.12.3"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.3",
+    "typescript": "5.9.3"
+  }
+}

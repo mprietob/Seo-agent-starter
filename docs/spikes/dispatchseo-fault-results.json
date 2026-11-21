@@ -1,0 +1,131 @@
+{
+  "upstream_commit": "fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26",
+  "captured_at": "2026-09-09T09:41:03.264Z",
+  "instrumentation": "HTTP provider doubles and database transport faults; no upstream file changes",
+  "tests": [
+    {
+      "id": "C06-baseline",
+      "label": "Both project bearers resolve before faults",
+      "status": "pass",
+      "detail": "Normal proxy path matches both fixture sites"
+    },
+    {
+      "id": "C06-db-503",
+      "label": "Project bearers rejected during injected database failure",
+      "status": "pass",
+      "detail": {
+        "project_statuses": [
+          401,
+          401
+        ],
+        "health_status": 503,
+        "limitation": "401 conflates unavailable database with invalid credentials"
+      }
+    },
+    {
+      "id": "C06-db-disconnect",
+      "label": "Project bearers rejected during injected database failure",
+      "status": "pass",
+      "detail": {
+        "project_statuses": [
+          401,
+          401
+        ],
+        "health_status": 503,
+        "limitation": "401 conflates unavailable database with invalid credentials"
+      }
+    },
+    {
+      "id": "C06-missing-table",
+      "label": "Project bearers rejected during injected database failure",
+      "status": "pass",
+      "detail": {
+        "project_statuses": [
+          401,
+          401
+        ],
+        "health_status": 503,
+        "limitation": "401 conflates unavailable database with invalid credentials"
+      }
+    },
+    {
+      "id": "C06-missing-column",
+      "label": "Migration compatibility fallback keeps the site",
+      "status": "pass",
+      "detail": "Injected absent ai_choice column; older-column selection remains site scoped"
+    },
+    {
+      "id": "C06-legacy-fallback",
+      "label": "Legacy bearer resolves synthetic automatic project during outage",
+      "status": "pass",
+      "detail": {
+        "gabi_requirement": "not_met",
+        "observed": {
+          "domain": "",
+          "mode": "auto",
+          "auto_approve": true,
+          "merge_enabled": true
+        },
+        "limitation": "Flags only; no builder, merge or publication executed"
+      }
+    },
+    {
+      "id": "C06-recovery",
+      "label": "Site identities recover after transport restoration",
+      "status": "pass",
+      "detail": "No process restart required for these reads"
+    },
+    {
+      "id": "C13-github-shared-token",
+      "label": "Site A can select B repository using the instance credential",
+      "status": "pass",
+      "detail": {
+        "gabi_requirement": "not_met",
+        "events": [
+          {
+            "provider": "github",
+            "method": "GET",
+            "path": "/repos/gabi-lab-fixture/site-b",
+            "credential": "synthetic-1"
+          },
+          {
+            "provider": "github",
+            "method": "GET",
+            "path": "/repos/gabi-lab-fixture/site-b/commits",
+            "credential": "synthetic-1"
+          },
+          {
+            "provider": "github",
+            "method": "GET",
+            "path": "/repos/gabi-lab-fixture/site-b",
+            "credential": "synthetic-1"
+          },
+          {
+            "provider": "github",
+            "method": "GET",
+            "path": "/repos/gabi-lab-fixture/site-b/commits",
+            "credential": "synthetic-1"
+          },
+          {
+            "provider": "github",
+            "method": "GET",
+            "path": "/repos/gabi-lab-fixture/site-b/pulls",
+            "credential": "synthetic-1"
+          }
+        ],
+        "observation": "Instance credential used for validation and B PR read through A; mock grants access to B"
+      }
+    },
+    {
+      "id": "C13-gsc-shared-account",
+      "label": "Site A can probe B property using the instance service account",
+      "status": "fail",
+      "error": "set_gsc_property failed"
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 1,
+    "confirmed_gabi_gaps": 2
+  }
+}

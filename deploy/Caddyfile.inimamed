@@ -1,0 +1,16 @@
+mcp.inimamed.com {
+  reverse_proxy mcp-server:3000
+}
+
+supabase.inimamed.com {
+  reverse_proxy supabase-envoy:8000
+}
+
+app.inimamed.com {
+  reverse_proxy frontend:80
+}
+
+seo.inimamed.com {
+  encode zstd gzip
+  reverse_proxy clinic-seo:4407
+}

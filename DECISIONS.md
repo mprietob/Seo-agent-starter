@@ -78,12 +78,68 @@ INIMA no será un módulo, workspace ni dependencia de Gabi SEO. Una conexión f
 
 Search Console, GBP, analítica, leads y GEO producen observaciones con fuente, sitio, instante y frescura. La interfaz distinguirá datos observados, inferencias y recomendaciones. La atribución de conversiones no se presentará como causalidad demostrada.
 
-## Decisiones pendientes
+## ADR-011 — Condiciones de aislamiento para adoptar el motor
 
-1. Modalidad exacta de reutilización y versión fijada de DispatchSEO.
-2. Stack de implementación de Gabi tras los spikes, sin asumir Next.js por herencia del upstream.
+- Estado: aceptada como restricción de diseño; implementación y adopción técnica pendientes
+- Fecha: 2026-09-09
+
+El [ensayo de fallos y proveedores simulados](docs/spikes/dispatchseo-fault-report.md) confirma que la separación de filas por proyecto en DispatchSEO self-hosted no limita por sí sola los recursos alcanzables con credenciales de instancia. También caracteriza el fallback legacy a flags automáticos durante un fallo de BD. Esto no cambia ADR-002: composición sigue siendo la primera opción a evaluar.
+
+Para Gabi, los agentes generales no recibirán tokens directos del motor. La identidad autenticada de Gabi determinará site_id y la conexión upstream; las herramientas no podrán elegir otra conexión ni declarar por sí mismas una aprobación humana. Los recursos GSC/GitHub deberán estar fijados por conexión y los permisos externos limitados al sitio. MCP_API_KEY legacy permanecerá ausente en las instancias usadas por Gabi. Fallos de dependencias no ampliarán permisos ni convertirán estados desconocidos en aprobaciones.
+
+El primer contrato tendrá una lista explícita de capacidades; no usará nombres get_/check_ como garantía de ausencia de efectos. Cambios de propiedad/repositorio, publicación y merge estarán excluidos hasta tener políticas autenticadas y pruebas de contrato.
+
+Una instancia por sitio con credenciales restringidas es una alternativa a evaluar; no basta separarla si conserva permisos externos amplios. Una instancia compartida necesitaría controles que impidan saltarse la fachada. No se selecciona todavía ninguna de las dos topologías ni el stack del producto.
+
+## ADR-012 — Contratos cerrados y contexto autenticado
+
+- Estado: aceptada como especificación; implementación pendiente
+- Fecha: 2026-09-09
+
+Se fija [v1.0.0](contracts/README.md) como primera base de contratos Gabi, con JSON Schema 2020-12 y ejemplos sintéticos. La entrada valida Command específicamente; los registros Approval/Event no son instrucciones aceptables del cliente. El contexto autenticado fija sitio e identidad. Las versiones desconocidas se rechazan y los efectos inciertos exigen conciliación. Publicación y merge permanecen desactivados.
+
+Se especifican [amenazas, retención y requisitos del almacén de secretos](docs/security/THREAT_MODEL.md), sin elegir backend. Se reutiliza jsonschema con dependencias fijadas y aisladas para comprobar el formato en desarrollo; esto no selecciona Python ni dependencias para la aplicación. Los 55 checks no prueban autorización, aislamiento, idempotencia ni cifrado. Esas pruebas son condición del prototipo antes del piloto.
+
+## ADR-013 — Composición para lecturas y stack del prototipo
+
+- Estado: aceptada para prototipo local; habilitación de producción pendiente
+- Fecha: 2026-09-09
+
+Se adopta DispatchSEO sin modificar, en la versión ensayada, detrás de un adaptador MCP privado para lecturas. La topología elegida para el futuro piloto es una instancia por sitio con credenciales limitadas; la instancia compartida del laboratorio solo sirve para pruebas. No se adopta su autoridad de aprobación ni se habilitan escrituras. Se selecciona Node.js 24 LTS, TypeScript, Fastify 5 y Ajv 8/2020-12 para la fachada, reutilizando el SDK oficial MCP al conectar el motor. El [análisis y criterios de aceptación](docs/spikes/prototype-stack.md) delimitan alternativas, dependencias, riesgos y pruebas pendientes. El primer corte usa datos sintéticos en memoria; persistencia, autenticación de producción y secretos siguen pendientes.
+
+## ADR-014 — Proyección de lecturas upstream en el laboratorio
+
+- Estado: aceptada e implementada para laboratorio; no habilita producción
+- Fecha: 2026-09-09
+
+El [adaptador ensayado](docs/spikes/gabi-dispatch-report.md) reutiliza SDK MCP 1.30.0 y solo llama get_project, get_suggestions y get_site_stats. ideas.list usa pending por defecto y admite rejected; no traduce aprobaciones upstream a aprobaciones Gabi. Las revisiones de la proyección son locales al proceso, sin validez para autorizar acciones futuras. Las evidencias son capturas inmutables minimizadas, iniciadas por el operador y consultadas por ID/sitio; no se inventan enlaces con ideas ni frescura.
+
+El transporte actual solo admite loopback sin redirects, respuestas acotadas y deadline por llamada. La red Docker aislada es obligatoria para impedir probes externos ante cambios concurrentes de configuración. El 401 upstream se normaliza como dependencia no disponible, dada la ambigüedad demostrada con fallos de BD. Las garantías y límites están documentados junto con nueve escenarios reales y las pruebas de normalización/errores. Quedan pendientes la entrada MCP pública de Gabi, autenticación de producción, persistencia, reintentos operativos y SecretStore.
+
+## ADR-015 — Entrada MCP sin estado y política común
+
+- Estado: implementada y ensayada en laboratorio; producción pendiente
+- Fecha: 2026-09-09
+
+Gabi expone tres herramientas de lectura por Streamable HTTP en loopback, reutilizando Server y transporte del SDK MCP 1.30.0. Cada POST autentica y crea un servidor sin sesión persistente; initialize no conserva privilegios. Los argumentos se traducen a Command v1 y llaman al mismo servicio que HTTP; sus esquemas se derivan del contrato existente. No hay reenvío arbitrario de herramientas upstream ni autoridad de aprobación.
+
+Se eligen respuestas JSON finitas sin batches ni streams de notificaciones. Host/Origin locales, cuerpo acotado, no-store y errores redactados forman parte de esta entrada. El [contrato operativo y sus pruebas](docs/MCP_LOCAL.md) documentan siete grupos nuevos y cuatro escenarios integrados hasta DispatchSEO. Este cambio no añade dependencias ni configura clientes personales. El soporte remoto y la autenticación de producción requieren una tanda posterior.
+
+## ADR-016 — Panel ligero y acceso exclusivo de demostración
+
+- Estado: implementada para datos sintéticos; autenticación de producción pendiente
+- Fecha: 2026-09-09
+
+El primer panel reutiliza Fastify y createService con assets HTML/CSS/JavaScript locales, sin nuevas dependencias. Se muestran lecturas de sitio, ideas y evidencia sin añadir operaciones SEO. La selección entre dos sitios ficticios se monta explícitamente en el arranque sintético, emite una cookie HttpOnly por navegador y revoca la anterior al cambiar o cerrar. No es una puerta de acceso a conexiones reales: el montaje requiere SyntheticRepository y las otras entradas conservan su autenticación por cabecera.
+
+El [documento del panel](docs/DASHBOARD_LOCAL.md) define controles de origen, contenido, estados de interfaz y límites de las credenciales efímeras. Se verificaron 33 pruebas y el flujo visual en escritorio/móvil. La decisión mantiene abierta la autenticación operativa y la persistencia; el panel no afirma frescura ni resultados SEO no observados.
+
+## Decisiones pendientes tras ADR-016
+
+1. Adopción de escrituras y actualización de versión de DispatchSEO tras probar la fachada de lectura.
+2. Evolución del dashboard y stack del worker; el panel inicial usa assets locales y Fastify.
 3. Base de datos, migraciones y almacén de secretos para self-hosting.
-4. Contrato y transporte entre Gabi y el motor upstream.
+4. Ampliación del contrato de lectura y transporte seguro fuera del laboratorio.
 5. Proveedor y alcance de Search Console: OAuth, cuenta de servicio o ambos.
 6. Disponibilidad, revisión y límites de Google Business Profile API.
 7. Proveedor de analítica/conversiones y política de datos/consentimiento.
