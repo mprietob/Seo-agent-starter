@@ -1,0 +1,24 @@
+{
+  "captured_at": "2026-09-09T16:20:58.246Z",
+  "upstream_commit": "fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26",
+  "sdk": "1.30.0",
+  "entry": "gabi-mcp",
+  "tests": [
+    {
+      "id": "mcp-discovery-and-three-real-reads-both-sites",
+      "status": "pass"
+    },
+    {
+      "id": "mcp-cross-site-and-write-denial",
+      "status": "pass"
+    },
+    {
+      "id": "mcp-upstream-and-user-revocation",
+      "status": "pass"
+    },
+    {
+      "id": "mcp-no-idea-or-provider-configuration-mutations",
+      "status": "pass"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Gabi SEO · Tu espacio de trabajo</title><link rel="stylesheet" href="/dashboard.css"><script src="/dashboard.js" defer></script></head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="Gabi SEO, inicio"><span class="mark">g.</span><span>gabi<span class="brand-small">SEO WORKSPACE</span></span></a>
+  <p class="nav-label">TU ESPACIO</p>
+  <nav aria-label="Secciones"><a class="active" href="#main"><span aria-hidden="true">◫</span> Resumen</a><a href="#ideas"><span aria-hidden="true">≡</span> Ideas del sitio</a><a href="#evidence"><span aria-hidden="true">◎</span> Evidencias</a></nav>
+  <div class="side-note"><span class="small-dot"></span> Un paso cada vez<p>Observa, decide y después actúa.</p></div>
+  <div class="side-footer">Tu sitio. Tus datos.<br>Tu criterio.</div>
+</aside>
+<div class="workspace">
+  <header class="topbar"><span class="breadcrumb">Tu espacio <span>/</span> Resumen</span><span class="demo-tag"><span class="small-dot"></span> Demostración local</span></header>
+  <main id="main" tabindex="-1">
+    <div class="heading"><div><p class="eyebrow">CLARIDAD ANTES DE ACTUAR</p><h1>Tu SEO, con perspectiva.</h1><p class="lead">Un lugar para revisar tu sitio y decidir el siguiente paso.</p></div><span class="readonly">Solo lectura <span aria-hidden="true">↗</span></span></div>
+    <section class="demo-banner" aria-label="Entorno de demostración"><span class="banner-icon" aria-hidden="true">i</span><p><strong>Estás explorando datos de ejemplo.</strong> No hay cuentas conectadas ni cambios publicados.</p></section>
+    <section class="site-toolbar" aria-label="Seleccionar sitio"><div><label for="site-select">SITIO DE TRABAJO</label><select id="site-select" disabled><option>Cargando sitios…</option></select></div><div class="toolbar-actions"><button id="refresh" class="button secondary" disabled>↻ <span>Actualizar</span></button><button id="logout" class="text-button" hidden>Cerrar vista</button></div></section>
+    <div id="notice" class="notice" role="status" aria-live="polite">Preparando tu espacio…</div>
+    <button id="open-site" class="button primary" hidden>Abrir sitio seleccionado <span aria-hidden="true">→</span></button>
+    <div id="content" hidden>
+      <section class="summary-grid" aria-label="Resumen del sitio">
+        <article class="summary-card site-card"><div class="card-label">SITIO ACTUAL <span aria-hidden="true">↗</span></div><h2 id="site-name"></h2><p id="site-domain" class="domain"></p><span id="site-status" class="status-tag">Activo</span></article>
+        <article class="summary-card"><div class="card-label">IDEAS EN ESTA VISTA <span aria-hidden="true">≡</span></div><div id="idea-count" class="big-number">—</div><p>Propuestas pendientes de revisar</p><span class="muted-note">Hasta 100 ideas por consulta</span></article>
+        <article class="summary-card"><div class="card-label">ACTUALIDAD DE LOS DATOS <span aria-hidden="true">◎</span></div><h2 class="freshness-heading">Por comprobar</h2><p>Revisa la fuente de cada evidencia.</p><span class="muted-note">Una lectura reciente no garantiza datos recientes.</span></article>
+      </section>
+      <div class="body-grid">
+        <section id="ideas" class="panel"><div class="panel-heading"><div><p class="eyebrow">DE LA OBSERVACIÓN A LA IDEA</p><h2>Ideas del sitio</h2></div><span class="soft-tag">Pendientes</span></div><div id="idea-list"></div><div class="panel-foot">Las ideas son propuestas. Esta vista no aprueba ni publica cambios.</div></section>
+        <aside class="next-step"><div class="step-icon" aria-hidden="true">↗</div><p class="eyebrow">TU SIGUIENTE PASO</p><h2>Empieza por la evidencia.</h2><p>Antes de dar una idea por buena, revisa en qué se basa y cuándo se recogieron sus datos.</p><div class="step-rule"></div><span class="step-number">01</span><p class="step-caption">Elige una idea y abre su evidencia disponible.</p></aside>
+      </div>
+      <section id="evidence" class="panel evidence-panel"><div class="panel-heading"><div><p class="eyebrow">EL CONTEXTO IMPORTA</p><h2>Detrás de cada recomendación</h2></div><span class="soft-tag">Evidencias</span></div><div id="evidence-detail" aria-live="polite"><div class="empty-evidence"><span aria-hidden="true">◎</span><h3>Los datos, con su contexto.</h3><p>Abre la evidencia de una idea para conocer su fuente y su frescura.</p></div></div></section>
+      <footer class="page-footer"><span>Gabi SEO · Una base para tomar mejores decisiones.</span><span id="checked-at"></span></footer>
+    </div>
+  </main>
+</div>
+</body></html>

@@ -1,0 +1,10 @@
+{
+  "record_type": "Command",
+  "schema_version": "1.0.0",
+  "request_id": "00000000-0000-4000-8000-000000000012",
+  "operation": "ideas.list",
+  "payload": {
+    "status": "pending",
+    "limit": 20
+  }
+}

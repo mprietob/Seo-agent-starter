@@ -69,6 +69,7 @@ web_modules/
 .env
 .env.*
 !.env.example
+!.env.production.example
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -144,3 +145,8 @@ vite.config.ts.timestamp-*
 
 # Local architecture analysis artifacts
 graphify-out/
+
+# Isolated development validators (not application dependencies)
+.tools/
+__pycache__/
+.local/

@@ -1,0 +1,42 @@
+{
+  "upstream_commit": "fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26",
+  "captured_at": "2026-09-09T09:43:42.554Z",
+  "selected_case": "C13-gsc-shared-account",
+  "instrumentation": "HTTP provider doubles and database transport faults; no upstream file changes",
+  "tests": [
+    {
+      "id": "C13-gsc-shared-account",
+      "label": "Site A can probe B property using the instance service account",
+      "status": "pass",
+      "detail": {
+        "gabi_requirement": "not_met",
+        "events": [
+          {
+            "provider": "google",
+            "method": "POST",
+            "path": "/token",
+            "credential": "none"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "path": "/webmasters/v3/sites/sc-domain:site-b.gabi-lab.example.org/searchAnalytics/query",
+            "credential": "synthetic-2"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "path": "/webmasters/v3/sites/sc-domain:site-b.gabi-lab.example.org/searchAnalytics/query",
+            "credential": "synthetic-2"
+          }
+        ],
+        "observation": "Successful property access probe, not bulk GSC extraction; simulator accepts issued token"
+      }
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 0,
+    "confirmed_gabi_gaps": 1
+  }
+}

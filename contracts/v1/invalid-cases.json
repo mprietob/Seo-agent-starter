@@ -1,0 +1,220 @@
+[
+  {
+    "name": "reject_proposal_without_idempotency",
+    "base": "command_propose",
+    "path": ["idempotency_key"],
+    "remove": true
+  },
+  {
+    "name": "reject_unknown_outcome_retry",
+    "base": "error",
+    "path": ["retry_hint"],
+    "value": "bounded_read_retry"
+  },
+  {
+    "name": "reject_failed_run_without_cause",
+    "base": "run",
+    "path": ["status"],
+    "value": "failed"
+  },
+  {
+    "name": "reject_site_in_command",
+    "base": "command_site",
+    "path": [
+      "site_id"
+    ],
+    "value": "00000000-0000-4000-8000-000000000100"
+  },
+  {
+    "name": "reject_actor_in_command",
+    "base": "command_propose",
+    "path": [
+      "actor"
+    ],
+    "value": {
+      "actor_type": "human",
+      "actor_id": "00000000-0000-4000-8000-000000000009"
+    }
+  },
+  {
+    "name": "reject_direct_token",
+    "base": "command_site",
+    "path": [
+      "upstream_token"
+    ],
+    "value": "fictional-not-a-token"
+  },
+  {
+    "name": "reject_remote_endpoint",
+    "base": "command_site",
+    "path": [
+      "endpoint"
+    ],
+    "value": "http://localhost:1"
+  },
+  {
+    "name": "reject_merge_operation",
+    "base": "command_site",
+    "path": [
+      "operation"
+    ],
+    "value": "merge_pr"
+  },
+  {
+    "name": "reject_owner_flag",
+    "base": "command_propose",
+    "path": [
+      "payload",
+      "decided_by"
+    ],
+    "value": "owner"
+  },
+  {
+    "name": "reject_autoapproval",
+    "base": "command_propose",
+    "path": [
+      "payload",
+      "approved"
+    ],
+    "value": true
+  },
+  {
+    "name": "reject_unbounded_list",
+    "base": "command_ideas",
+    "path": [
+      "payload",
+      "limit"
+    ],
+    "value": 10000
+  },
+  {
+    "name": "reject_unsupported_version",
+    "base": "site",
+    "path": [
+      "schema_version"
+    ],
+    "value": "2.0.0"
+  },
+  {
+    "name": "reject_invalid_uuid",
+    "base": "site",
+    "path": [
+      "site_id"
+    ],
+    "value": "other-site"
+  },
+  {
+    "name": "reject_url_as_domain",
+    "base": "site",
+    "path": [
+      "domain"
+    ],
+    "value": "https://site-a.example.org"
+  },
+  {
+    "name": "reject_invalid_date",
+    "base": "site",
+    "path": [
+      "created_at"
+    ],
+    "value": "2026-99-99T12:00:00Z"
+  },
+  {
+    "name": "reject_local_time",
+    "base": "site",
+    "path": [
+      "created_at"
+    ],
+    "value": "2026-09-09T12:00:00"
+  },
+  {
+    "name": "reject_agent_approval",
+    "base": "approval",
+    "path": [
+      "actor",
+      "actor_type"
+    ],
+    "value": "agent"
+  },
+  {
+    "name": "reject_zero_revision",
+    "base": "approval",
+    "path": [
+      "target_revision"
+    ],
+    "value": 0
+  },
+  {
+    "name": "reject_unapproved_execution",
+    "base": "idea",
+    "path": [
+      "status"
+    ],
+    "value": "in_progress"
+  },
+  {
+    "name": "reject_pr_open_without_ref",
+    "base": "idea",
+    "path": [
+      "status"
+    ],
+    "value": "pr_open"
+  },
+  {
+    "name": "reject_published_idea",
+    "base": "idea",
+    "path": [
+      "status"
+    ],
+    "value": "published"
+  },
+  {
+    "name": "reject_unbounded_attempts",
+    "base": "run",
+    "path": [
+      "attempt"
+    ],
+    "value": 4
+  },
+  {
+    "name": "reject_unknown_without_error",
+    "base": "run",
+    "path": [
+      "status"
+    ],
+    "value": "unknown"
+  },
+  {
+    "name": "reject_fresh_without_timestamp",
+    "base": "evidence",
+    "path": [
+      "freshness"
+    ],
+    "value": "fresh"
+  },
+  {
+    "name": "reject_invented_freshness",
+    "base": "evidence",
+    "path": [
+      "fresh_until"
+    ],
+    "value": "2026-09-10T12:00:00Z"
+  },
+  {
+    "name": "reject_event_secret",
+    "base": "event_metric_observed",
+    "path": [
+      "payload",
+      "token"
+    ],
+    "value": "fictional-not-a-token"
+  },
+  {
+    "name": "reject_merge_without_proof",
+    "base": "event_idea_created",
+    "path": [
+      "event_type"
+    ],
+    "value": "publication.merged"
+  }
+]

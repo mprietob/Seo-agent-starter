@@ -12,13 +12,17 @@ El roadmap describe resultados verificables, no fechas comprometidas. Cada tanda
 
 ## Tanda 1 — Spikes de reutilización y contratos
 
-- [ ] Crear una matriz de capacidades Gabi ↔ DispatchSEO con versión y evidencia por capacidad.
-- [ ] Probar en un entorno descartable el despliegue self-hosted de DispatchSEO sin conectar cuentas reales.
+- [x] Crear una matriz de capacidades Gabi ↔ DispatchSEO con versión y evidencia por capacidad: [evaluación estática](docs/spikes/dispatchseo-evaluation.md), commit `fbf28b2` (2026-09-08). No acredita ejecución ni compatibilidad.
+- [x] Probar en un entorno descartable el despliegue self-hosted de DispatchSEO sin conectar cuentas reales: [ensayo Docker del 2026-09-09](docs/spikes/dispatchseo-lab-report.md), con cron y builders excluidos.
 - [ ] Inventariar contratos MCP/API necesarios y comprobar aislamiento multi-site.
-- [ ] Decidir: servicio upstream sin modificar, fork AGPL o adaptadores selectivos.
-- [ ] Definir contratos `Site`, `Idea`, `Approval`, `Run`, `Evidence` y eventos versionados.
-- [ ] Especificar threat model, retención, cifrado y almacén de secretos.
-- [ ] Seleccionar stack delgada y justificadamente; solo entonces añadir dependencias.
+  - Esquemas reales capturados: 73 herramientas agente y 19 chat. Lecturas, concurrencia y escrituras cruzadas de ideas ensayadas; aislamiento de credenciales, fallbacks y otros casos del [plan](docs/spikes/dispatchseo-contract-plan.md) todavía pendientes.
+  - [C06/C13 caracterizados con fallos y proveedores simulados](docs/spikes/dispatchseo-fault-report.md): tres diferencias respecto a los requisitos Gabi. ADR-011 fija restricciones; pruebas completas de la fachada y credenciales aún pendientes.
+- [x] Decidir modalidad para el prototipo: servicio sin modificar detrás de fachada de lectura, ADR-013. Escrituras y producción pendientes.
+- [x] Definir contratos `Site`, `Idea`, `Approval`, `Run`, `Evidence` y eventos versionados: [v1.0.0](contracts/README.md), con 55 comprobaciones de formato/entrada. Políticas de servicio pendientes de implementar.
+- [x] Especificar threat model, retención, cifrado y almacén de secretos: [modelo](docs/security/THREAT_MODEL.md). Backend de secretos y comprobación de controles pendientes.
+- [x] Seleccionar stack delgada y justificadamente: [Node.js/TypeScript, Fastify y Ajv](docs/spikes/prototype-stack.md). Dependencias fijadas e instaladas; SDK MCP 1.30.0 ensayado con las tres lecturas acotadas.
+- [x] Implementar primer corte de lectura sintética y pruebas de políticas descritas en ADR-013: [prototipo](docs/LOCAL_PROTOTYPE.md), 12 pruebas correctas.
+- [x] Conectar adaptador MCP al laboratorio y probar aislamiento en la frontera Gabi↔DispatchSEO: [9 escenarios integrados](docs/spikes/gabi-dispatch-report.md). Red privada de producción y credenciales reales pendientes.
 
 Salida: ADR de adopción, prototipo sin secretos, pruebas de contrato y estructura mínima de módulos.
 
@@ -27,9 +31,12 @@ Salida: ADR de adopción, prototipo sin secretos, pruebas de contrato y estructu
 - [ ] Registro multi-site y ubicaciones con aislamiento probado.
 - [ ] Cola/tareas, aprobación humana, auditoría e idempotencia.
 - [ ] Fachada MCP mínima con lectura de proyecto y gestión de cola.
+  - [x] Lecturas locales de sitio, ideas y evidencia mediante [MCP Gabi](docs/MCP_LOCAL.md), con siete grupos de pruebas nuevos y cuatro escenarios contra DispatchSEO real. Escrituras de cola y autenticación operativa siguen pendientes.
 - [ ] Conectar Search Console del piloto con consentimiento explícito y permisos mínimos.
+  - [x] Ruta local de lectura manual preparada: instancia aislada, validación de propiedad/configuración, proyección normalizada y pruebas de fallo cerrado. Falta la primera verificación con las credenciales locales del piloto.
 - [ ] Sincronizar métricas de solo lectura, procedencia y frescura.
 - [ ] Dashboard mínimo de salud y próximos pasos.
+  - [x] [Panel local con sitios sintéticos](docs/DASHBOARD_LOCAL.md): resumen, ideas, detalle de evidencias y estados de carga/error. Pantalla de salud del piloto y conexión a datos reales pendientes.
 
 Salida: Pinturas Gabriel Ferrol visible en modo lectura; ninguna modificación en Google o GitHub.
 
@@ -65,6 +72,8 @@ Salida: embudo verificable con datos sintéticos antes de conectar producción.
 ## Tanda 6 — GEO y automatización gradual
 
 - [ ] Reutilizar o adaptar snapshots de visibilidad IA del motor seleccionado.
+- [x] Proyectar el inventario leído de ZeroRank a evidencia y propuestas de borrador pendientes; el escritor sigue fuera hasta verificar su API y conservar la aprobación humana.
+- [x] Añadir una entrada trazable para preguntas procedentes de proveedores o exportaciones autorizadas; la selección del proveedor y cualquier cuota siguen pendientes. Véase [investigación de preguntas](docs/QUESTION_RESEARCH.md).
 - [ ] Comparar motores, citas y competidores con procedencia.
 - [ ] Presupuestos, cuotas, alertas y kill switches.
 - [ ] Habilitar automatizaciones por sitio de forma gradual.

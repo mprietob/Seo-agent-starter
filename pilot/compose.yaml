@@ -1,0 +1,62 @@
+name: gabi-seo-pilot
+services:
+  postgres:
+    image: postgres:17-alpine@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73
+    environment:
+      POSTGRES_USER: dispatch
+      POSTGRES_DB: dispatchseo
+      POSTGRES_PASSWORD: ${PILOT_DB_PASSWORD:?required}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    networks: [private]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U dispatch -d dispatchseo]
+      interval: 3s
+      retries: 30
+  migrate:
+    image: postgres:17-alpine@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73
+    environment:
+      PGHOST: postgres
+      PGUSER: dispatch
+      PGDATABASE: dispatchseo
+      PGPASSWORD: ${PILOT_DB_PASSWORD:?required}
+    volumes: [../../dispatchseo-lab-upstream/supabase/migrations/setup.sql:/setup.sql:ro]
+    command: [psql, -v, ON_ERROR_STOP=1, -f, /setup.sql]
+    networks: [private]
+    depends_on:
+      postgres: {condition: service_healthy}
+  postgrest:
+    image: postgrest/postgrest:v12.2.12@sha256:5f4ce744539bbba786b4e24dbbd95bdb2a956dcf568c5374995a0ff4a68f5bd2
+    environment:
+      PGRST_DB_URI: postgres://dispatch:${PILOT_DB_PASSWORD}@postgres:5432/dispatchseo
+      PGRST_DB_SCHEMAS: public
+      PGRST_DB_ANON_ROLE: dispatch
+    networks: [private]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+  app:
+    image: gabi-seo-pilot:fbf28b2
+    environment:
+      POSTGREST_URL: http://postgrest:3000
+      APP_URL: http://localhost:4407
+      DASHBOARD_PASSWORD: ${PILOT_DASHBOARD_PASSWORD:?required}
+      GABI_SYNC_SECRET: ${GABI_SYNC_SECRET:?required}
+      GABI_PROJECT_ID: ${GABI_PROJECT_ID:?required}
+      GSC_SITE_URL: ${GSC_SITE_URL:?required}
+      GSC_SERVICE_ACCOUNT_JSON: ${GSC_SERVICE_ACCOUNT_JSON:-}
+      DISPATCHSEO_TELEMETRY: 'off'
+      NEXT_TELEMETRY_DISABLED: '1'
+    networks: [private, google]
+    depends_on: [postgrest]
+  entrance:
+    image: nginx:alpine@sha256:72ba65eb42c10344912a84ff42408db7d34f2feb642204570ab8fc5ffd29f1d3
+    volumes: [./nginx.conf:/etc/nginx/conf.d/default.conf:ro]
+    ports: [127.0.0.1:4407:80]
+    networks: [private, entrance]
+    depends_on:
+      app: {condition: service_healthy}
+networks:
+  private: {internal: true}
+  google: {}
+  entrance: {}
+volumes:
+  pgdata:

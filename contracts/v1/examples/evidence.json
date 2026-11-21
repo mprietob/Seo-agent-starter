@@ -1,0 +1,15 @@
+{
+  "record_type": "Evidence",
+  "schema_version": "1.0.0",
+  "site_id": "00000000-0000-4000-8000-000000000001",
+  "evidence_id": "00000000-0000-4000-8000-000000000005",
+  "source": "synthetic",
+  "classification": "observation",
+  "summary": "Observación de prueba; no representa tráfico real.",
+  "source_ref": "fixture-a",
+  "observed_at": null,
+  "captured_at": "2026-09-09T12:00:00Z",
+  "fresh_until": null,
+  "freshness": "unknown",
+  "payload_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

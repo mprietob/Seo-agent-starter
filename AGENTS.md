@@ -50,4 +50,8 @@ Construir un starter SEO open-source, self-hosted y multi-site que coordine soft
 
 ## Alcance actual
 
-En esta fase solo hay documentación. No conectes Search Console, Google Business Profile, GitHub ni INIMA; no despliegues y no crees credenciales.
+ADR-013 permite además el prototipo local de lectura sintética en TypeScript: dependencias fijadas, autenticación efímera en memoria, archivos locales de acceso ignorados y pruebas HTTP en loopback. Véase docs/LOCAL_PROTOTYPE.md. Esto no habilita cuentas reales ni un despliegue de producción.
+
+La Tanda 1 permite pruebas locales descartables del upstream en Docker, autorizadas el 2026-09-09: sitios sintéticos, red interna sin salida a proveedores, puerto loopback y secretos efímeros de laboratorio fuera de Git. El acceso directo a la BD en el harness solo prepara fixtures y comprueba efectos; no es un adaptador del producto.
+
+El laboratorio no conecta cuentas reales. Excepción autorizada por el usuario el 2026-09-10: MVP del piloto Pinturas Gabriel en localhost, un operador, Search Console en lectura mediante DispatchSEO, secretos locales ignorados, sincronización manual y sin publicación. No conectar GBP, analítica ni INIMA; no activar cron ni builders. Autorización adicional del usuario el 2026-09-20: ZeroRank puede leerse únicamente mediante su REST fijo `GET /prompts`, con clave local ignorada por Git, sin crear ni ejecutar prompts, contenido, workflows o publicaciones. Al verificar el circuito real, hacer commit y push y parar para revisión.

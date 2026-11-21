@@ -1,0 +1,450 @@
+{
+  "schema_version": "1",
+  "reviewed_at": "2026-09-08",
+  "upstream_repository": "https://github.com/NeoZi12/dispatchseo",
+  "upstream_commit": "fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26",
+  "verification": "static_source_review_only",
+  "endpoint": "/api/mcp",
+  "transport": "Streamable HTTP",
+  "count": 73,
+  "tools": [
+    {
+      "name": "get_suggestions",
+      "line": 298,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L298",
+      "gabi_initial_policy": "candidate_read_requires_contract_test"
+    },
+    {
+      "name": "propose_suggestion",
+      "line": 357,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L357",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "update_suggestion",
+      "line": 526,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L526",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "reorder_queue",
+      "line": 704,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L704",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "build_suggestion_now",
+      "line": 732,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L732",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_build_brief",
+      "line": 805,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L805",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "check_sameness",
+      "line": 853,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L853",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "submit_article",
+      "line": 955,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L955",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_drafts",
+      "line": 1250,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1250",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "approve_draft",
+      "line": 1342,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1342",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "discard_draft",
+      "line": 1400,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1400",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "save_research_notes",
+      "line": 1435,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1435",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_research_notes",
+      "line": 1497,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1497",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_site_digest",
+      "line": 1549,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1549",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "rescan_site",
+      "line": 1586,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1586",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "set_publish_target",
+      "line": 1619,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1619",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "set_content_path_hint",
+      "line": 1662,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1662",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "track_keywords",
+      "line": 1703,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1703",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_rankings",
+      "line": 1761,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1761",
+      "gabi_initial_policy": "candidate_read_requires_contract_test"
+    },
+    {
+      "name": "log_page",
+      "line": 1838,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1838",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_pages",
+      "line": 1910,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1910",
+      "gabi_initial_policy": "candidate_read_requires_contract_test"
+    },
+    {
+      "name": "mark_indexing_requested",
+      "line": 1937,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L1937",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_site_stats",
+      "line": 2006,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2006",
+      "gabi_initial_policy": "candidate_read_requires_contract_test"
+    },
+    {
+      "name": "add_backlink_prospect",
+      "line": 2087,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2087",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_backlink_prospects",
+      "line": 2140,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2140",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "update_backlink_prospect",
+      "line": 2167,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2167",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "check_serp",
+      "line": 2211,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2211",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_domain_rank",
+      "line": 2310,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2310",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_dataforseo_usage",
+      "line": 2333,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2333",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_ai_visibility",
+      "line": 2366,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2366",
+      "gabi_initial_policy": "candidate_read_requires_contract_test"
+    },
+    {
+      "name": "record_ai_citations",
+      "line": 2384,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2384",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "suggest_keywords",
+      "line": 2445,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2445",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "keyword_ideas",
+      "line": 2474,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2474",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_site_profile",
+      "line": 2627,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2627",
+      "gabi_initial_policy": "candidate_read_requires_contract_test"
+    },
+    {
+      "name": "set_site_profile",
+      "line": 2649,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2649",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "set_gsc_property",
+      "line": 2704,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2704",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "set_market",
+      "line": 2734,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2734",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "detect_site_launch",
+      "line": 2771,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2771",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "disconnect_repo",
+      "line": 2816,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2816",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "set_github_repo",
+      "line": 2859,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2859",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_overview",
+      "line": 2912,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2912",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_briefing",
+      "line": 2996,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L2996",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_activity",
+      "line": 3030,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3030",
+      "gabi_initial_policy": "candidate_read_requires_contract_test"
+    },
+    {
+      "name": "get_automations",
+      "line": 3055,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3055",
+      "gabi_initial_policy": "candidate_read_requires_contract_test"
+    },
+    {
+      "name": "set_agent",
+      "line": 3087,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3087",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "set_internal_linking",
+      "line": 3130,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3130",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_cron_health",
+      "line": 3173,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3173",
+      "gabi_initial_policy": "candidate_read_requires_contract_test"
+    },
+    {
+      "name": "mark_cron_fixed",
+      "line": 3255,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3255",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_next_actions",
+      "line": 3290,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3290",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "merge_pr",
+      "line": 3380,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3380",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_changelog",
+      "line": 3406,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3406",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_feedback",
+      "line": 3434,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3434",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "submit_feedback",
+      "line": 3472,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3472",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "vote_feedback",
+      "line": 3508,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3508",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "update_feedback",
+      "line": 3538,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3538",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_playbook",
+      "line": 3574,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3574",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "set_playbook_status",
+      "line": 3648,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3648",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_project",
+      "line": 3683,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3683",
+      "gabi_initial_policy": "candidate_read_requires_contract_test"
+    },
+    {
+      "name": "record_trend_scan",
+      "line": 3774,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3774",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "propose_trend_topic",
+      "line": 3801,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3801",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_trend_topics",
+      "line": 3884,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3884",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "update_trend_topic",
+      "line": 3914,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3914",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "trigger_trend_scan",
+      "line": 3949,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3949",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "expand_trend_topic",
+      "line": 3973,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L3973",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_instructions",
+      "line": 4003,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L4003",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_pipeline_pack",
+      "line": 4041,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L4041",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "mark_install_step",
+      "line": 4082,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L4082",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "mark_pipeline_installed",
+      "line": 4141,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L4141",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "set_conventions",
+      "line": 4226,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L4226",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_conventions",
+      "line": 4304,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L4304",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "get_content_prefs",
+      "line": 4323,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L4323",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "set_content_prefs",
+      "line": 4342,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L4342",
+      "gabi_initial_policy": "disabled_pending_review"
+    },
+    {
+      "name": "join_waitlist",
+      "line": 4387,
+      "source_url": "https://github.com/NeoZi12/dispatchseo/blob/fbf28b2ee58bbbd6ee94dbd61e0bb9627bb59a26/src/app/api/%5Btransport%5D/route.ts#L4387",
+      "gabi_initial_policy": "disabled_pending_review"
+    }
+  ]
+}
