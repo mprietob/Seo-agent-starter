@@ -93,3 +93,13 @@ Salida: embudo verificable con datos sintéticos antes de conectar producción.
 - Accesibilidad, internacionalización y zonas horarias.
 - Métricas de coste, cuota, calidad y fallos visibles.
 - Casos de prueba reales para Claude Code, Codex, Cursor y un cliente MCP genérico.
+
+## Backlog de producto INIMA SEO — RRSS e internacionalización (28/11/2026)
+
+Requisitos de negocio para una fase posterior, sin reordenar el trabajo actual ni autorizar integraciones, gasto o publicación en producción. Fuente editorial: [inima-marketing, decisiones D-082 a D-085](https://github.com/mprietob/inima-marketing/blob/main/DECISIONES.md). Mi INIMA sigue siendo un sistema externo.
+
+- [ ] Gestión de contenido por cuenta e idioma: investigación de temas, guiones, revisión médica, producción/edición, traducción y publicación con políticas aprobadas, registro y límites de coste. Diferenciar marca personal, clínicas y Rebeldía Médica.
+- [ ] Ciclo recurrente de Trial Reels: reutilizar piezas ganadoras, probar variantes y versiones completas en inglés, medir distribución geográfica y conversión. Verificar capacidades reales de Instagram/API, reglas y cuotas; mantener paso manual si no hay mecanismo autorizado. No prometer automatización inexistente.
+- [ ] Atribución por reel/campaña/idioma: enlazar visitas → tests → compras de contenido → teleconsultas, con eventos minimizados, sin datos clínicos ni identificativos en SEO; contrato externo versionado y métricas de ingresos/coste con límites de atribución.
+- [ ] Evaluar HeyGen u otros proveedores intercambiables para doblaje y avatares de médicos voluntarios de la cuenta de clínicas; revisar naturalidad, consentimiento, identificación de contenido sintético, coste y calidad médica. No contratar ni generar clones masivamente hasta validar la prueba. Uso del láser con avatares pendiente de decisión.
+- [ ] Objetivo de automatización operativa dentro de reglas autorizadas, con excepciones para revisión humana (en particular validación médica y publicidad sanitaria). No elimina las políticas de aprobación vigentes de este repo; cualquier ampliación de permisos debe diseñarse y verificarse expresamente.
